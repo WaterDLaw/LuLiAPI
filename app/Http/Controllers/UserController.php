@@ -42,7 +42,7 @@ class UserController extends Controller{
     // Function welche sich um das Login der Benutzer kümmert
     public function login(Request $request){
 
-
+        
         // Der Validator überprüft ob die Daten des request alle in Ordnung und vorhanden sind
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
