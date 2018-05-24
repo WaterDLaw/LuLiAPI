@@ -6,6 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
+    // Model relationship
+    public function training(){
+        return $this->belongsTo('App\Training');
+    }
+
+    // Model relationship
+    public function arp_feedback(){
+        return $this->hasOne('App\ArpFeedback');
+    }
+
+    // Model relationship
+    public function crq_sas(){
+        return $this->hasOne('App\CrqSas');
+    }
+
+    // Model relationship
+    public function cats(){
+        return $this->hasOne('App\Cat');
+    }
+
+    // Model relationship
+    public function gehtest(){
+        return $this->hasOne('App\Gehtest');
+    }
+
     //
     protected $fillable = [
         'vorname',
