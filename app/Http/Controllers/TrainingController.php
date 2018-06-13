@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Training;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class TrainingController extends Controller
     public function __construct()
     {
         // Adds the JWT Auth Middleware to trainings
-        $this->middleware('jwt.auth');
+        $this->middleware('jwt.auth',['except' => ['getCalendar']]);
     }
 
     /**
@@ -125,4 +126,18 @@ class TrainingController extends Controller
         return $patients;
 
     }
+
+    public function getCalendar(){
+        info('Get all Participants for the calendar');
+
+        $trainings = DB::table('trainings')
+            ->leftJoin('patients', 'trainings.id', '=', 'patients.training_id')
+            ->get();
+
+        info($trainings);
+
+        return $trainings;
+
+    }
+
 }

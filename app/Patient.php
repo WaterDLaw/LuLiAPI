@@ -13,22 +13,22 @@ class Patient extends Model
 
     // Model relationship
     public function arp_feedback(){
-        return $this->hasOne('App\ArpFeedback');
+        return $this->hasMany('App\ArpFeedback');
     }
 
     // Model relationship
     public function crq_sas(){
-        return $this->hasOne('App\CrqSas');
+        return $this->hasMany('App\CrqSas');
     }
 
     // Model relationship
     public function cats(){
-        return $this->hasOne('App\Cat');
+        return $this->hasMany('App\Cat');
     }
 
     // Model relationship
     public function gehtest(){
-        return $this->hasOne('App\Gehtest');
+        return $this->hasMany('App\Gehtest');
     }
 
     //
@@ -54,5 +54,6 @@ class Patient extends Model
         'funktionelle_atemstörung',
         'diagnose_details',
         'bemerkungen',
+        'status'
     ];
 }

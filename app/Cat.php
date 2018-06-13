@@ -23,6 +23,7 @@ class Cat extends Model
         'frage_5',
         'frage_6',
         'frage_7',
-        'frage_8'
+        'frage_8',
+        'erledigt'
     ];
 }

@@ -16,6 +16,6 @@ class Gehtest extends Model
         'patient_id',
         'erstellungsdatum',
         'distanz',
-
+        'erledigt'
     ];
 }
