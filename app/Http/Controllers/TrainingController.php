@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Training;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class TrainingController extends Controller
@@ -114,6 +115,9 @@ class TrainingController extends Controller
         //
         $training = Training::find($id);
 
+        // Set all patients foreign key to null
+        $patients = Patient::where('training_id', '=', $id);
+        $patients->update(['training_id' => null]);
         $training->delete();
 
         return 'Training wurde erfolgreich gelöscht';
