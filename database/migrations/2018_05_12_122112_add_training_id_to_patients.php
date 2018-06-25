@@ -16,7 +16,7 @@ class AddTrainingIdToPatients extends Migration
         Schema::table('patients', function (Blueprint $table) {
             //
             $table->unsignedInteger('training_id')->unsigned()->nullable();
-            $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('training_id')->references('id')->on('trainings')->onUpdate('cascade');
         });
     }
 

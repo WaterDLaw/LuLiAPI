@@ -109,10 +109,10 @@ class TrainingController extends Controller
      * @param  \App\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         //
-        $training = Training::find($request->input('$id'));
+        $training = Training::find($id);
 
         $training->delete();
 
@@ -131,7 +131,7 @@ class TrainingController extends Controller
         info('Get all Participants for the calendar');
 
         $trainings = DB::table('trainings')
-            ->leftJoin('patients', 'trainings.id', '=', 'patients.training_id')
+            ->join('patients', 'trainings.id', '=', 'patients.training_id')
             ->get();
 
         info($trainings);

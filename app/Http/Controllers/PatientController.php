@@ -106,18 +106,20 @@ class PatientController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     *ß
      * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         //
-        $patient = Patient::find($request->input('$id'));
+        print("delete");
+        print($id);
+        $patient = Patient::find($id);
 
         $patient->delete();
 
-        return 'Patient wurde erfolgreich gelöscht';
+        return 'deleted';
     }
 
     /**
