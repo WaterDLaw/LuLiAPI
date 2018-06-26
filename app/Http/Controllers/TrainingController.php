@@ -20,7 +20,7 @@ class TrainingController extends Controller
     public function __construct()
     {
         // Adds the JWT Auth Middleware to trainings
-        $this->middleware('jwt.auth',['except' => ['getCalendar']]);
+        $this->middleware('jwt.auth',['except' => ['getCalendar', 'index']]);
     }
 
     /**
