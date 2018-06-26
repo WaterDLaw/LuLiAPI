@@ -17,6 +17,7 @@ class Training extends Model
         'ort',
         'start', 
         'end',
+        'spital',
         'montag_start',
         'montag_end',
         'dienstag_start',
