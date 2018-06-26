@@ -18,6 +18,7 @@ class TrainingMigration extends Migration
             $table->timestamps();
             $table->string('title')->nullable();
             $table->string('ort')->nullable();
+            $table->string('spital')->nullable();
             $table->date('start')->nullable();
             $table->date('end')->nullable();
             $table->string('montag_start')->nullable();
