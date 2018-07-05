@@ -96,7 +96,7 @@ class PatientController extends Controller
     public function update(Request $request)
     {
         //
-        info('Update request.');
+
         $patient = Patient::findOrFail($request->id);
         $patient->update($request->all());
 
@@ -113,8 +113,7 @@ class PatientController extends Controller
     public function destroy($id)
     {
         //
-        print("delete");
-        print($id);
+
         $patient = Patient::find($id);
 
         $patient->delete();
@@ -132,7 +131,6 @@ class PatientController extends Controller
      */
     public function addTraining(Request $request){
     
-        info('add Training.');
 
         $patient = Patient::find($request->patient['id']);
         $training = Training::find($request->training['id']);
@@ -146,17 +144,16 @@ class PatientController extends Controller
     // Checks if there is a Feedback and returns the feedback if there is one else return false
     public function hasFeedback($id){
  
-        info('check Feedback');
-        info($id);
+
         $exists = Patient::find($id)->arp_feedback()->exists();
         if($exists){
-            info('exists');
+  
             $arp_fragebogen = Patient::find($id)->arp_feedback()->get();
-            info($arp_fragebogen);
+      
             $return_value = $arp_fragebogen;
         }
         else{
-            info('does not exist');
+      
             $return_value = 'false';
         }
        return $return_value;
@@ -166,39 +163,37 @@ class PatientController extends Controller
     public function getFeedback($id){
 
         $feedback = Patient::find($id)->arp_feedback()->first();
-        info($feedback);
+
 
         return $feedback;
     }
 
     // Checks if there is a Crqsas and returns the Crqsas if there is one else return false
     public function hasCrqsasBefore($id){
-        info('check crqsas before');
-        info($id);
+
         $exists = Patient::find($id)->crq_sas()->where('erledigt', 'before')->exists();
         if($exists){
-            info('exists');
+         
             $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'before')->get();
             $return_value = $crq_sas;
         }
         else{
-            info('does not exist');
+    
             $return_value = 'false';
         }
        return $return_value;
     }
 
     public function hasCrqsasAfter($id){
-        info('check crqsas after');
-        info($id);
+
         $exists = Patient::find($id)->crq_sas()->where('erledigt', 'after')->exists();
         if($exists){
-            info('exists');
+       
             $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'after')->get();
             $return_value = $crq_sas;
         }
         else{
-            info('does not exist');
+        
             $return_value = 'false';
         }
     return $return_value;
@@ -215,32 +210,30 @@ class PatientController extends Controller
 
      // Checks if there is a Cat and returns the Cat if there is one else return false
      public function hasCatBefore($id){
-        info('check cat before');
-        info($id);
+
         $exists = Patient::find($id)->cats()->where('erledigt', 'before')->exists();
         if($exists){
-            info('exists');
+
             $cat = Patient::find($id)->cats()->where('erledigt', 'before')->get();
             $return_value = $cat;
         }
         else{
-            info('does not exist');
+
             $return_value = 'false';
         }
        return $return_value;
     }
 
     public function hasCatAfter($id){
-        info('check cat after');
-        info($id);
+
         $exists = Patient::find($id)->cats()->where('erledigt', 'after')->exists();
         if($exists){
-            info('exists');
+   
             $cat = Patient::find($id)->cats()->where('erledigt', 'after')->get();
             $return_value = $cat;
         }
         else{
-            info('does not exist');
+      
             $return_value = 'false';
         }
        return $return_value;
@@ -250,23 +243,22 @@ class PatientController extends Controller
     public function getCat($id){
 
         $cat = Patient::find($id)->cats()->first();
-        info($cat);
+   
 
         return $cat;
     }
 
 // Checks if there is a Gehtest (Before and After) and returns the Gehtest if there is one else return false
 public function hasGehtestBefore($id){
-    info('check gehtest before');
-    info($id);
+
     $exists = Patient::find($id)->gehtest()->where('erledigt', 'before')->exists();
     if($exists){
-        info('exists');
+   
         $gehtest = Patient::find($id)->gehtest()->where('erledigt', 'before')->get();
         $return_value = $gehtest;
     }
     else{
-        info('does not exist');
+       
         $return_value = 'false';
     }
    return $return_value;
@@ -276,12 +268,12 @@ public function hasGehtestAfter($id){
 
     $exists = Patient::find($id)->gehtest()->where('erledigt', 'after')->exists();
     if($exists){
-        info('exists');
+    
         $gehtest = Patient::find($id)->gehtest()->where('erledigt', 'after')->get();
         $return_value = $gehtest;
     }
     else{
-        info('does not exist');
+    
         $return_value = 'false';
     }
    return $return_value;
@@ -291,7 +283,7 @@ public function hasGehtestAfter($id){
 public function getGehtest($id){
 
     $gehtest = Patient::find($id)->gehtest()->first();
-    info($gehtest);
+
 
     return $gehtest;
 }

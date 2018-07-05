@@ -54,6 +54,8 @@ class Patient extends Model
         'funktionelle_atemstörung',
         'diagnose_details',
         'bemerkungen',
-        'status'
+        'status',
+        'rauchstatus',
+        'pneumologen'
     ];
 }

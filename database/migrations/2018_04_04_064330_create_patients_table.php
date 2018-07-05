@@ -23,7 +23,7 @@ class CreatePatientsTable extends Migration
             $table->smallInteger('groesse')->nullable();;
             $table->enum('geschlecht', ['m','w'])->nullable();;
             $table->enum('sprache', ['DE','FR','IT','EN'])->nullable();;
-            $table->integer('telefon')->nullable();;
+            $table->string('telefon')->nullable();;
             $table->string('strasse')->nullable();;
             $table->smallInteger('plz')->nullable();;
             $table->string('wohnort')->nullable();;
