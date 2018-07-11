@@ -56,6 +56,18 @@ class Patient extends Model
         'bemerkungen',
         'status',
         'rauchstatus',
-        'pneumologen'
+        'pneumologen',
+        'gewicht_before',
+        'gewicht_after',
+        'fevl_before',
+        'fevl_after',
+        'fevp_before',
+        'fevp_after',
+        'vkmaxl_before',
+        'vkmaxl_after',
+        'vkmaxp_before',
+        'vkmaxp_after',
+        'vo2max_before',
+        'vo2max_after',
     ];
 }
