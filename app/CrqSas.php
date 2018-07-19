@@ -35,6 +35,10 @@ class CrqSas extends Model
         'frage_18',
         'frage_19',
         'frage_20',
-        'erledigt'
+        'erledigt',
+        'dyspnoe',
+        'fatique',
+        'emotion',
+        'mastery'
     ];
 }
