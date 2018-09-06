@@ -19,6 +19,7 @@ class EntriesMigration extends Migration
             $table->timestamps();
             $table->string('text')->nullable();
             $table->string('title')->nullable();
+            $table->string('author')->nullable();
 
             $table->unsignedInteger('patient_id')->unsigned()->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade');

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Journal extends Model
+class Entry extends Model
 {
 
     public function patient(){

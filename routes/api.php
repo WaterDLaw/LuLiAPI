@@ -26,6 +26,7 @@ Route::middleware('jwt.auth')->get('users', function(Request $request) {
 
 Route::post('user/register', 'UserController@register');
 Route::post('user/login', 'UserController@login');
+Route::get('user/loggedIn/{email}', 'UserController@getUserByEmail');
 
 Route::resource('patients', 'PatientController');
 Route::post('patients/addTraining', 'PatientController@addTraining');
@@ -46,6 +47,9 @@ Route::resource('arp_fragebogen', 'ArpFeedbackController');
 Route::resource('crq_sas', 'CrqsasController');
 Route::resource('cat', 'CatController');
 Route::resource('gehtest', 'GehtestController');
+
+Route::resource('entry', 'EntryController');
+Route::get('patients/{id}/entries', 'EntryController@getEntries');
 
 Route::resource('trainings', 'TrainingController');
 Route::get('calendar', 'TrainingController@getCalendar');

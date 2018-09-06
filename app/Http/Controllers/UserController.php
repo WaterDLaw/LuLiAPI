@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use JWTFactory;
@@ -75,5 +76,11 @@ class UserController extends Controller{
         }
         
         return response()->json(compact('token'));
+    }
+
+    // Function welche den User mit der entsprechenden Email returned
+    public function getUserByEmail($email){
+        $user = User::where('email', '=', $email)->get();
+        return $user;
     }
 }

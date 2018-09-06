@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Entry;
+
 use App\Patient;
 use App\User;
+use App\Entry;
 
 class EntryController extends Controller
 {
@@ -31,13 +32,16 @@ class EntryController extends Controller
     /**
      * Displaly all the entries of one patient
      * 
-     * @param $int patient_id
+     * @param $int id
      * 
      */
-    public function getEntries($patient_id){
+    public function getEntries($id){
 
         info('Get Entries');
-        $entries = Patient::find($id)->entry()->get();
+        info($id);
+        $patient = Patient::find($id);
+        info($patient);
+        $entries = $patient->entry()->get();
         info($entries);
         return $entries;
 
@@ -62,11 +66,15 @@ class EntryController extends Controller
     public function store(Request $request)
     {
         info('Store Entry.');
+        
         // get the id of the patient first to asign the foreign key
         $entry = Entry::create($request->entry);
 
         $patient = Patient::find($request->patient_id);
         $user = User::find($request->user_id);
+        info($user->email);
+        // Set email of associated user
+        $entry->author = $user->email;
 
         // Eloquent belongsTo method call
         $entry->patient()->associate($patient);
