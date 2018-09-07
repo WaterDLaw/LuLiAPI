@@ -17,7 +17,7 @@ class EntriesMigration extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('text')->nullable();
+            $table->longText('text')->nullable();
             $table->string('title')->nullable();
             $table->string('author')->nullable();
 
