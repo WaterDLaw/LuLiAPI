@@ -56,3 +56,5 @@ Route::get('calendar', 'TrainingController@getCalendar');
 Route::get('trainings/{id}/getParticipants', 'TrainingController@getParticipants');
 
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
+
+Route::get('pdf/Verordnung', 'PdfController@getVerordnungsformular');
