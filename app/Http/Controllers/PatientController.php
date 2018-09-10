@@ -157,6 +157,7 @@ class PatientController extends Controller
             $return_value = 'false';
         }
        return $return_value;
+
     }
 
     // Get feedback over the patient relation
