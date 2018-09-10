@@ -49,7 +49,7 @@ class PdfController extends Controller
         ->saveAs(storage_path('app/public/pdf/filled2.pdf'));
         
         // Check for errors
-        if (!$pdf->saveAs('filled2.pdf')) {
+        if (!$pdf->saveAs(storage_path('app/public/pdf/filled2.pdf'))) {
             $error = $pdf->getError();
             echo $error;
         }
