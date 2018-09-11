@@ -37,6 +37,6 @@ class PdfController extends Controller
             echo $error;
         }
 
-        return response()->download(storage_path("app/public/pdf/my_converted.pdf"));
+        return response()->download(storage_path("app/public/pdf/filleder.pdf"));
     }
 }
