@@ -30,7 +30,7 @@ class PdfController extends Controller
         
         $name = $patient->name;
         $vorname = $patient->vorname;
-        $strasse = $patuient->strasse;
+        $strasse = $patient->strasse;
         $plzOrt = $patient->plz . " " .$patient->wohnort;
         $geb = $patient->geburtsdatum;
         $tel = $patient->telefon;
