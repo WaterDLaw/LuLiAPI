@@ -32,8 +32,8 @@ class PdfController extends Controller
             // Create PDF
         
             
-        //$xfdf = new XfdfFile(['name' => 'Jürgen мирано']);
-        //$xfdf->saveAs(storage_path('app/public/data.xfdf'));
+        $xfdf = new XfdfFile(['name' => 'Test']);
+        $xfdf->saveAs(storage_path('app/public/pdf/data.xfdf'));
 
         $pdf = new Pdf($path, [
             'command' => '/app/vendor/pdftk/bin/pdftk',
