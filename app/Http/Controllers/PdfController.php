@@ -45,6 +45,7 @@ class PdfController extends Controller
                 'Text9' => 'Herzog',
                 'Text10' => 'Daniel'
             ])
+        ->needAppearances()
         ->saveAs(storage_path('app/public/pdf/filled2.pdf'));
         
         // Check for errors
