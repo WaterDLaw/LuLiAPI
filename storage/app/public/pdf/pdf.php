@@ -26,7 +26,7 @@ $pdf->send("Test");
  }
  */
 
-$pdf = new Pdf('./my_converted.pdf', [
+$pdf = new Pdf('/app/storage/app/public/pdf/my_converted.pdf', [
     'command' => '/app/vendor/pdftk/bin/pdftk',
 	'useExec' => true
 ]);
