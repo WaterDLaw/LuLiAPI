@@ -14,35 +14,19 @@ class PdfController extends Controller
 
     public function getVerordnungsformular(){
 
-
-        // Get all values for the form
-        
-
-
-        // Fill form with data array
-        $path = '/app/storage/app/public/pdf/my_converted.pdf';
-      
-        //$pdf->fillForm('/home/danytlaw/Downloads/data.xfdf');
-        //$pdf->flatten();      
-
     
-        
-        //return response()->download($pdf);
-        
-            // Create PDF
-        
-        
-        $pdf = new Pdf($path, [
+    
+        $pdf = new Pdf('/app/storage/app/public/pdf/my_converted.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
-            //'command' => '/snap/pdftk/9/usr/bin/pdftk',
             'useExec' => true
         ]);
         
         //$data = $pdf->getDataFields();
-
+        
         // Get data as string
         //echo $data;
-
+        
+        
         $pdf->fillForm([
                 'Text9' => 'Herzog',
                 'Text10' => 'Daniel'
@@ -50,7 +34,7 @@ class PdfController extends Controller
         ->needAppearances();
         
         // Check for errors
-        if (!$pdf->saveAs('/app/storage/app/public/pdf/filledrin.pdf')) {
+        if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
             echo $error;
         }
