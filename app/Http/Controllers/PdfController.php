@@ -20,7 +20,7 @@ class PdfController extends Controller
 
 
         // Fill form with data array
-        $path = storage_path('app/public/pdf/my_converted.pdf');
+        $path = '/app/storage/app/public/pdf/my_converted.pdf';
       
         //$pdf->fillForm('/home/danytlaw/Downloads/data.xfdf');
         //$pdf->flatten();      
@@ -36,7 +36,7 @@ class PdfController extends Controller
         //$xfdf->saveAs(storage_path('app/public/data.xfdf'));
 
         $pdf = new Pdf($path, [
-            'command' => base_path('vendor/pdftk/bin/pdftk'),
+            'command' => '/app/vendor/pdftk/bin/pdftk',
             //'command' => '/snap/pdftk/9/usr/bin/pdftk',
             'useExec' => true
         ]);
@@ -46,10 +46,10 @@ class PdfController extends Controller
                 'Text10' => 'Daniel'
             ])
         ->needAppearances()
-        ->saveAs(storage_path('app/public/pdf/filled2.pdf'));
+        ->saveAs('/app/storage/app/public/pdf/filled2.pdf');
         
         // Check for errors
-        if (!$pdf->saveAs(storage_path('app/public/pdf/filled2.pdf'))) {
+        if (!$pdf->saveAs('/app/storage/app/public/pdf//filled2.pdf')) {
             $error = $pdf->getError();
             echo $error;
         }
