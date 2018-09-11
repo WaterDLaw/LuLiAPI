@@ -1,7 +1,11 @@
 <?php
+
+namespace App;
+
 use mikehaertl\pdftk\Pdf;
 use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
+
 /*
 // Fill form with data array
 //$path = storage_path('app/public/pdf/my_converted.pdf');
