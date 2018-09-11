@@ -16,13 +16,18 @@ class PdfController extends Controller
     public function getVerordnungsformular($id){
 
         $patient = Patient::find($id);
+        
+        //$path = '/app/storage/app/public/pdf/my_converted.pdf'
+        $path = storage_path("app/public/pdf/my_converted.pdf");
 
-
-        $pdf = new Pdf('/app/storage/app/public/pdf/my_converted.pdf', [
+        $pdf = new Pdf($path, [
             'command' => '/app/vendor/pdftk/bin/pdftk',
+            //'command' => '/snap/pdftk/current/usr/bin/pdftk',
             'useExec' => true
         ]);
         
+        echo $patient->name;
+
         //$data = $pdf->getDataFields();
         
         // Get data as string
@@ -41,8 +46,8 @@ class PdfController extends Controller
         $VersUnfallNr = "";
         
         $pdf->fillForm([
-                'Text9' => 'Herzog',
-                'Text10' => 'Daniel',
+                'Text9' => $name,
+                'Text10' => $vorname,
                 'Text11' => $strasse,
                 'Text12' => $plzOrt,
                 'Text13' => $geb,
@@ -56,11 +61,16 @@ class PdfController extends Controller
         ->needAppearances();
         
         // Check for errors
+        if (!$pdf->saveAs(storage_path("app/public/pdf/filleder.pdf"))) {
+            $error = $pdf->getError();
+            echo $error;
+        }
+        /*
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
             echo $error;
         }
-
+        */
         return response()->download(storage_path("app/public/pdf/filleder.pdf"));
     }
 }
