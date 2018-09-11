@@ -1,7 +1,6 @@
 <?php
 
-namespace App;
-
+require("/app/vendor/autload.php");
 use mikehaertl\pdftk\Pdf;
 use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
