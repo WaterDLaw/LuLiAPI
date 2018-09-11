@@ -14,8 +14,6 @@ class PdfController extends Controller
 
     public function getVerordnungsformular(){
 
-    
-    
         $pdf = new Pdf('/app/storage/app/public/pdf/my_converted.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
@@ -38,5 +36,7 @@ class PdfController extends Controller
             $error = $pdf->getError();
             echo $error;
         }
+
+        return response()->download(storage_path("app/public/pdf/my_converted.pdf"));
     }
 }
