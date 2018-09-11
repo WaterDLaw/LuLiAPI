@@ -41,6 +41,13 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
+        $data = $pdf->getDataFields();
+
+        // Get data as string
+        echo $data;
+        $txt = (string) $data;
+        echo $txt;
+
         $pdf->fillForm([
                 'Text9' => 'Herzog',
                 'Text10' => 'Daniel'
