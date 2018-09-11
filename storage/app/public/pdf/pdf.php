@@ -1,6 +1,6 @@
 <?php
 
-require("/app/vendor/autload.php");
+require("/app/vendor/autoload.php");
 use mikehaertl\pdftk\Pdf;
 use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
