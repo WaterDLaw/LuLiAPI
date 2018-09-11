@@ -35,6 +35,7 @@ class PdfController extends Controller
         $xfdf = new XfdfFile(['name' => 'Test']);
         $xfdf->saveAs(storage_path('app/public/pdf/datar.xfdf'));
 
+        echo storage_path('app/public/pdf/data.xfdf');
         $pdf = new Pdf($path, [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             //'command' => '/snap/pdftk/9/usr/bin/pdftk',
