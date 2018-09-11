@@ -41,19 +41,16 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
-        $data = $pdf->getDataFields();
+        //$data = $pdf->getDataFields();
 
         // Get data as string
-        echo $data;
-        $txt = (string) $data;
-        echo $txt;
+        //echo $data;
 
         $pdf->fillForm([
                 'Text9' => 'Herzog',
                 'Text10' => 'Daniel'
             ])
-        ->needAppearances()
-        ->saveAs('/app/storage/app/public/pdf/filled2.pdf');
+        ->needAppearances();
         
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filled2.pdf')) {
