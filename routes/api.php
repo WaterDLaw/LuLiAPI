@@ -58,3 +58,4 @@ Route::get('trainings/{id}/getParticipants', 'TrainingController@getParticipants
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
 Route::get('pdf/Verordnung/{id}', 'PdfController@getVerordnungsformular');
+Route::get('pdf/VerordnungEmpty', 'PdfController@emptyVerordnung');

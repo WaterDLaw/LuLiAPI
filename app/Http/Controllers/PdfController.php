@@ -13,12 +13,18 @@ class PdfController extends Controller
 {
     //Verordnungsformular08_D
 
+    public function emptyVerordnung(){
+        return response()->download(storage_path("app/public/pdf/my_converted.pdf"));
+    }
+
     public function getVerordnungsformular($id){
+
+        info("start Verordnungspdf");
 
         $patient = Patient::find($id);
         
-        //$path = '/app/storage/app/public/pdf/my_converted.pdf'
-        $path = storage_path("app/public/pdf/my_converted.pdf");
+        $path = '/app/storage/app/public/pdf/my_converted.pdf';
+        //$path = storage_path("app/public/pdf/my_converted.pdf");
 
         $pdf = new Pdf($path, [
             'command' => '/app/vendor/pdftk/bin/pdftk',
@@ -61,16 +67,17 @@ class PdfController extends Controller
         ->needAppearances();
         
         // Check for errors
+        /*
         if (!$pdf->saveAs(storage_path("app/public/pdf/filleder.pdf"))) {
             $error = $pdf->getError();
             echo $error;
         }
-        /*
+        */
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
             echo $error;
         }
-        */
-        return response()->download(storage_path("app/public/pdf/filleder.pdf"));
+        
+        return response()->download('/app/storage/app/public/pdf/filleder.pdf'));
     }
 }
