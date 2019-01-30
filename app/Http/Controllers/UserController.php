@@ -18,8 +18,11 @@ class UserController extends Controller{
         // Der Validator überprüft ob die Daten des request alle in Ordnung und vorhanden sind
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
+            'vorname' => 'required',
             'name' => 'required',
-            'password'=> 'required'
+            'password'=> 'required',
+            'ort' => 'required',
+            'userType' => 'required'
         ]);
 
         // Falls die Daten nicht ok sind so sende die Errors zurück
@@ -30,8 +33,11 @@ class UserController extends Controller{
         // Kreier den User und speichere in
         User::create([
             'name' => $request->get('name'),
+            'vorname' => $request->get('vorname'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
+            'userType' => $request->get('userType'),
+            'ort' => $request->get('ort')
         ]);
         // Nehme den neusten User (first) der gerade kreiert wurde und erstelle ein JWT-Token
         $user = User::first();
@@ -83,4 +89,6 @@ class UserController extends Controller{
         $user = User::where('email', '=', $email)->get();
         return $user;
     }
+
+    // Function welche den User updated
 }
