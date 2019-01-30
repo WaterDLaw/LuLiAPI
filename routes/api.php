@@ -27,6 +27,9 @@ Route::middleware('jwt.auth')->get('users', function(Request $request) {
 Route::post('user/register', 'UserController@register');
 Route::post('user/login', 'UserController@login');
 Route::get('user/loggedIn/{email}', 'UserController@getUserByEmail');
+Route::get('user/all', 'UserController@getAllUsers');
+Route::put('user/{id}', 'UserController@update');
+Route::get('user/{id}', 'UserController@getSingleUser');
 
 Route::resource('patients', 'PatientController');
 Route::post('patients/addTraining', 'PatientController@addTraining');

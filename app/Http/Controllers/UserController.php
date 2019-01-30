@@ -12,6 +12,12 @@ use Response;
 
 class UserController extends Controller{
 
+    public function __construct()
+    {
+        // Adds the JWT Auth Middleware to patients
+        $this->middleware('jwt.auth')->except(['login', 'register']);
+    }
+
     // Function zum anmelden des Benutzers
     public function register(Request $request){
 
@@ -29,7 +35,7 @@ class UserController extends Controller{
         if ($validator->fails()) {
             return response()->json($validator->errors());
         }
-
+        info("CREATTTTTTEEEEEEEEEEE");
         // Kreier den User und speichere in
         User::create([
             'name' => $request->get('name'),
@@ -91,4 +97,22 @@ class UserController extends Controller{
     }
 
     // Function welche den User updated
+    public function getAllUsers(){
+        $users = User::all();
+        return $users;
+    }
+
+    // Function to update a User
+    public function update(Request $request){
+        $user = User::findOrFail($request->id);
+        $user->update($request->all());
+
+
+        return 'Patient wurde erfolgreich bearbeitet';
+    }
+
+    public function getSingleUser(Request $request){
+        $user = User::findOrFail($request->id);
+        return $user;
+    }
 }
