@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use App\Training;
+use App\Pneumologist;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -56,7 +57,13 @@ class PatientController extends Controller
     {
         info('Store request.');
 
-        return Patient::create($request->all());
+        $patient = new Patient($request->all());
+        
+        $pneumologist = Pneumologist::find($request->pneumologist_id);
+
+        $patient->pneumologist()->associate($pneumologist);
+        $patient->save();
+
         //
 
     }
@@ -71,6 +78,8 @@ class PatientController extends Controller
     {
         //
         $patient = Patient::find($id);
+
+
 
         return $patient;
     }
@@ -99,9 +108,12 @@ class PatientController extends Controller
 
         $patient = Patient::findOrFail($request->id);
         $patient->update($request->all());
+        $pneumologist = Pneumologist::find($request->pneumologist_id);
 
+        $patient->pneumologist()->associate($pneumologist);
+        $patient->save();
 
-        return 'Patient wurde erfolgreich bearbeitet';
+        
     }
 
     /**

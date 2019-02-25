@@ -36,6 +36,11 @@ class Patient extends Model
         return $this->hasMany('App\Entry');
     }
 
+    // Model relationship
+    public function pneumologist(){
+        return $this->belongsTo('App\Pneumologist');
+    }
+
     //
     protected $fillable = [
         'vorname',

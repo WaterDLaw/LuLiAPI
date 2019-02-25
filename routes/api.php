@@ -58,6 +58,8 @@ Route::resource('trainings', 'TrainingController');
 Route::get('calendar', 'TrainingController@getCalendar');
 Route::get('trainings/{id}/getParticipants', 'TrainingController@getParticipants');
 
+Route::resource('pneumologist','PneumologistController');
+
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
 Route::get('pdf/Verordnung/{id}', 'PdfController@getVerordnungsformular');

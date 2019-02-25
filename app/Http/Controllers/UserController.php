@@ -108,7 +108,7 @@ class UserController extends Controller{
         $user->update($request->all());
 
 
-        return 'Patient wurde erfolgreich bearbeitet';
+        return $user;
     }
 
     public function getSingleUser(Request $request){
