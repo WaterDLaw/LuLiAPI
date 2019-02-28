@@ -102,4 +102,13 @@ class PneumologistController extends Controller
     {
         //
     }
+
+    // Get all the Patients for the Pneumologist
+    public function getPatients($id){
+        info('Get Patients');
+        $patients = Pneumologist::find($id)->patients()->get();
+        info($patients);
+        return $patients;
+
+    }
 }

@@ -59,6 +59,7 @@ Route::get('calendar', 'TrainingController@getCalendar');
 Route::get('trainings/{id}/getParticipants', 'TrainingController@getParticipants');
 
 Route::resource('pneumologist','PneumologistController');
+Route::get('pneumologist/{id}/getPatients', 'PneumologistController@getPatients');
 
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
