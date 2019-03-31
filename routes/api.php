@@ -61,7 +61,7 @@ Route::get('trainings/{id}/getParticipants', 'TrainingController@getParticipants
 Route::resource('pneumologist','PneumologistController');
 Route::get('pneumologist/{id}/getPatients', 'PneumologistController@getPatients');
 
-Route::resource('actionhistory'. 'ActionHistoryController');
+Route::resource('actionhistory', 'ActionHistoryController');
 
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
