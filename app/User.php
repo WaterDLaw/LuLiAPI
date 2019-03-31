@@ -14,6 +14,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Entry');
     }
 
+    public function actionHistory(){
+        return $this->hasMany('App\ActionHistory');
+    }
 
     /**
      * The attributes that are mass assignable.

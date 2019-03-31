@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActiohistoryTable extends Migration
+class CreateActionhistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateActiohistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('actiohistory', function (Blueprint $table) {
+        Schema::create('actionhistory', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('topic')->nullable();
             $table->string('action')->nullable();
-            $table->string('author')->nullable();
+            $table->unsignedInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            
         });
     }
 
@@ -29,6 +31,6 @@ class CreateActiohistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actiohistory');
+        Schema::dropIfExists('actionhistory');
     }
 }
