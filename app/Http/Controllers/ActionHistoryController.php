@@ -7,12 +7,6 @@ use App\ActionHistory;
 
 class ActionHistoryController extends Controller
 {
-    * 
-    * Constructor
-    * 
-    * @return void
-    * 
-    */
 
    public function __construct()
    {
@@ -56,7 +50,7 @@ class ActionHistoryController extends Controller
        // get the id of the patient first to asign the foreign key
        $ActionHistory = ActionHistory::create($request->all());
 
-       $user = User::find($request->user_id);
+       $user = User::where('email',$request->email);
        $ActionHistory->user()->associate($user);
        $ActionHistory->save();
 
@@ -81,10 +75,10 @@ class ActionHistoryController extends Controller
    /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\ActionHistory  $cat
+    * @param  \App\ActionHistory  $ActionHistory
     * @return \Illuminate\Http\Response
     */
-   public function edit(ArpFeedback $cat)
+   public function edit(ArpFeedback $ActionHistory)
    {
        //
    }
