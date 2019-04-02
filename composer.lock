@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e111036a94a814bc864bfe587f205e5a",
+    "content-hash": "0f3d83c1ede2eb512cad6736dc28c1c3",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1439,21 +1439,21 @@
         },
         {
             "name": "spatie/laravel-tail",
-            "version": "3.1.0",
+            "version": "3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-tail.git",
-                "reference": "48d5ab722d2298d67505f5928f75152fce5dfc5a"
+                "reference": "c0b5708adbf00e81c41b2e753be1e253f961f57e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tail/zipball/48d5ab722d2298d67505f5928f75152fce5dfc5a",
-                "reference": "48d5ab722d2298d67505f5928f75152fce5dfc5a",
+                "url": "https://api.github.com/repos/spatie/laravel-tail/zipball/c0b5708adbf00e81c41b2e753be1e253f961f57e",
+                "reference": "c0b5708adbf00e81c41b2e753be1e253f961f57e",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "~5.5.0|~5.6.0",
-                "illuminate/support": "~5.5.0|~5.6.0",
+                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "php": "^7.0",
                 "symfony/process": "^3.3|^4.0"
             },
@@ -1491,7 +1491,7 @@
                 "log",
                 "tail"
             ],
-            "time": "2018-04-12T12:07:07+00:00"
+            "time": "2019-02-26T17:09:23+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

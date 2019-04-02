@@ -101,7 +101,7 @@ class TrainingController extends Controller
         $training->update($request->all());
 
 
-        return 'Training wurde erfolgreich bearbeitet';
+        return $training;
     }
 
     /**
@@ -125,7 +125,10 @@ class TrainingController extends Controller
 
     public function getParticipants($id){
         info('Get Participatns');
-        $patients = Training::find($id)->patients()->get();
+        $patients = Training::find($id)->patients()
+            ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
+            ->select('patients.*','pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname')
+            ->get();
         info($patients);
         return $patients;
 

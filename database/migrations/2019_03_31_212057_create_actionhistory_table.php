@@ -13,11 +13,12 @@ class CreateActionhistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('actionhistory', function (Blueprint $table) {
+        Schema::create('action_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('topic')->nullable();
             $table->string('action')->nullable();
+            $table->string('email')->nullable();
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
@@ -31,6 +32,6 @@ class CreateActionhistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actionhistory');
+        Schema::dropIfExists('action_histories');
     }
 }

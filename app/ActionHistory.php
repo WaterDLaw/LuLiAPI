@@ -13,7 +13,6 @@ class ActionHistory extends Model
 
     //
     protected $fillable = [
-        'id',
         'topic',
         'action'
     ];

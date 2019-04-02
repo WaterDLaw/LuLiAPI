@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ActionHistory;
-
+use App\User;
 class ActionHistoryController extends Controller
 {
 
@@ -46,11 +46,12 @@ class ActionHistoryController extends Controller
    public function store(Request $request)
    {
        info('Store Actionhistory entry.');
-       
+       info($request->historyEntry);
        // get the id of the patient first to asign the foreign key
-       $ActionHistory = ActionHistory::create($request->all());
+       $ActionHistory = ActionHistory::create($request->historyEntry);
 
-       $user = User::where('email',$request->email);
+       $user = User::where('email',$request->email)->first();
+       $ActionHistory->email = $request->email;
        $ActionHistory->user()->associate($user);
        $ActionHistory->save();
 

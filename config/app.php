@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        'Spatie\Tail\TailServiceProvider',
 
         /*
          * Package Service Providers...
