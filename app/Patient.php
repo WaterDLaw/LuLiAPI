@@ -41,6 +41,10 @@ class Patient extends Model
         return $this->belongsTo('App\Pneumologist');
     }
 
+    public function messwerte(){
+        return $this->hasMany('App\Messwerte');
+    }
+
     //
     protected $fillable = [
         'vorname',
@@ -79,5 +83,11 @@ class Patient extends Model
         'vkmaxp_after',
         'vo2max_before',
         'vo2max_after',
+        'copdgold',
+        'copdletter',
+        'belastung',
+        'sauerstoff_bei_belastung',
+        'sao2',
+        'Intervalltraining'
     ];
 }

@@ -63,6 +63,8 @@ Route::get('pneumologist/{id}/getPatients', 'PneumologistController@getPatients'
 
 Route::resource('actionhistory', 'ActionHistoryController');
 
+Route::resource('messwerte', 'MesswerteController');
+
 Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
 Route::get('pdf/Verordnung/{id}', 'PdfController@getVerordnungsformular');

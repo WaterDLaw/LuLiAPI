@@ -65,7 +65,7 @@ class PatientController extends Controller
         $patient->save();
 
         //
-
+        return $patient;
     }
 
     /**
