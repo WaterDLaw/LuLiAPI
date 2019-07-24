@@ -70,6 +70,9 @@ class PdfController extends Controller
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
         */
+
+        exec("pdftk filleder.pdf stamp signaturtester.pdf output combined.pdf"); 
+
         $output = shell_exec('ls -lart');
         Log::debug($output);
         // Check for errors
