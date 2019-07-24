@@ -71,7 +71,7 @@ class PdfController extends Controller
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
-            echo $error;
+            Log::error ("Could not save pdf:" . $error);
         }
 
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
