@@ -15,6 +15,7 @@ class Pneumologist extends Model
     protected $fillable = [
         'anrede',
         'vorname',
-        'name'
+        'name',
+        'signature'
     ];
 }

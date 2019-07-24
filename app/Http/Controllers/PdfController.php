@@ -23,6 +23,7 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
+        $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf');
         //$data = $pdf->getDataFields();
         
         // Get data as string
@@ -55,6 +56,11 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
+
+
+        // Add Signature to file
+        // Stamp with another PDF (first page repeated)
+
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();

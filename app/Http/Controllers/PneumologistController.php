@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Pneumologist;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 class PneumologistController extends Controller
 {
 
@@ -46,6 +47,7 @@ class PneumologistController extends Controller
     public function store(Request $request)
     {
         info('Store request.');
+        info($request->name);
 
         return Pneumologist::create($request->all());
     }
@@ -60,9 +62,12 @@ class PneumologistController extends Controller
     {
         //
         $pneumologist = Pneumologist::find($id);
+        info($pneumologist->signature);
 
         return $pneumologist;
     }
+
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -86,12 +91,38 @@ class PneumologistController extends Controller
     {
         //
         info('Update request.');
+        info($request);
         $pneumologist = Pneumologist::findOrFail($request->id);
         $pneumologist->update($request->all());
 
+       return $pneumologist;
+    }
+
+    public function uploadSignature(Request $request)
+    {
+        info("update signature");
+        info($request->id);
+        info($request->file);
+
+        // Store image in Storage
+        $path = $request->file('signature')->store('signatures');
+        // Store link to path in database
+        $pneumologist = Pneumologist::findOrFail($request->id);
+        $pneumologist->signature = $path;
+
+        $pneumologist->save();
+        
         return $pneumologist;
     }
 
+    public function getSignature($path)
+    {
+        info("paassst");
+        
+        $signature = Storage::get('signatures/' . $path);
+
+        return response($signature, 200)->header('Content-Type', 'image/jpeg');
+    }
     /**
      * Remove the specified resource from storage.
      *
