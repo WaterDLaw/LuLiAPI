@@ -85,7 +85,6 @@ class PdfController extends Controller
         sleep(2);
         Storage::delete('temp_signature_pdf/temp_signature.pdf');
 
-        return $path;
     }
 
     public function deleteTempSignature()
