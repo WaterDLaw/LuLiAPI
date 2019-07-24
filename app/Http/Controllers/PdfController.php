@@ -81,7 +81,7 @@ class PdfController extends Controller
     public function uploadTempSignature(Request $request)
     {
         // Store signature pdf in Storage
-        $path = $request->file('signature')->storeAs('temp_signature_pdf', "temp_signaturelo.pdf");
+        $path = $request->file('signature')->store('temp_signature_pdf');
    
         
 
