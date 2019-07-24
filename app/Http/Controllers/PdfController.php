@@ -7,6 +7,7 @@ use mikehaertl\pdftk\Pdf;
 use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
 use App\Patient;
+use Illuminate\Support\Facades\Storage;
 use Response;
 use Log;
 
@@ -30,7 +31,7 @@ class PdfController extends Controller
         
         // Get data as string
         //echo $data;
-        /*
+    
         $name = $patient->name;
         $vorname = $patient->vorname;
         $strasse = $patient->strasse;
@@ -58,10 +59,10 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
-        */
+        
         
         try{
-            $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf');
+            $pdf->stamp('/app/storage/app/public/pdf/temp_signature_pdf/temp_signature.pdf');
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
@@ -75,5 +76,21 @@ class PdfController extends Controller
         }
 
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
+    }
+
+    public function uploadTempSignature(Request $request)
+    {
+        // Store signature pdf in Storage
+        $path = $request->file('signature')->storeAs('temp_signature_pdf', "temp_signature.pdf");
+        sleep(2);
+        Storage::delete('temp_signature_pdf/temp_signature.pdf');
+
+        return $path;
+    }
+
+    public function deleteTempSignature()
+    {
+        // Delete the file after the new one is created
+        Storage::delete('temp_signature_pdf/temp_signature.pdf');
     }
 }
