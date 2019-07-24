@@ -60,8 +60,7 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
-        $pdf->stamp($stampPdf)
-        ->saveAs('/app/storage/app/public/pdf/stamped.pdf');
+        
 
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
