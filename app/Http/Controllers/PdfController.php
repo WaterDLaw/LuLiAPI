@@ -25,10 +25,6 @@ class PdfController extends Controller
         ]);
         Log::debug("TEEEEEEEEEEEST");
         
-        $stampPdf = new Pdf('/app/storage/app/public/pdf/signaturetester.pdf', [
-            'command' => '/app/vendor/pdftk/bin/pdftk',
-            'useExec' => true
-        ]);
             
         //$data = $pdf->getDataFields();
         
@@ -65,7 +61,7 @@ class PdfController extends Controller
         */
         
         try{
-            $pdf->stamp($stampPdf);
+            $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf');
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
