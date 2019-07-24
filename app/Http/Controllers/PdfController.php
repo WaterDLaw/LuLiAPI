@@ -32,7 +32,7 @@ class PdfController extends Controller
         
         // Get data as string
         //echo $data;
-        
+        /*
         $name = $patient->name;
         $vorname = $patient->vorname;
         $strasse = $patient->strasse;
@@ -60,8 +60,8 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
-        
-
+        */
+        $pdf->stamp($stampPdf);
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
