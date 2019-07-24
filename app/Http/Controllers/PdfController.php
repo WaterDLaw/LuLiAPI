@@ -8,6 +8,7 @@ use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
 use App\Patient;
 use Response;
+use Log;
 
 class PdfController extends Controller
 {
