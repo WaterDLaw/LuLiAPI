@@ -71,10 +71,7 @@ class PdfController extends Controller
         }
         */
 
-        exec("pdftk filleder.pdf stamp signaturtester.pdf output combined.pdf"); 
 
-        $output = shell_exec('ls -lart');
-        Log::debug($output);
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
