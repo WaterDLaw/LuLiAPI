@@ -23,12 +23,13 @@ class PdfController extends Controller
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
-        
+        echo "TEEEEEEEEEEEST";
+        /*
         $stampPdf = new Pdf('/app/storage/app/public/pdf/signaturtester.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
-
+            */
         //$data = $pdf->getDataFields();
         
         // Get data as string
@@ -62,14 +63,15 @@ class PdfController extends Controller
         ->needAppearances();
         
         */
-        
+        /*
         try{
             $pdf->stamp($stampPdf);
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
-        
-       
+        */
+        $output = shell_exec('ls -lart');
+        echo "<pre>$output</pre>";
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
