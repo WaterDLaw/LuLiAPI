@@ -74,7 +74,7 @@ class PdfController extends Controller
             $error = $pdf->getError();
             Log::error ("Could not save pdf:" . $error);
         }
-        Storage::delete('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
+        Storage::delete('temp_signature.pdf');
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
     }
 
@@ -82,7 +82,7 @@ class PdfController extends Controller
     {
         // Store signature pdf in Storage
         $path = $request->file('signature')->storeAs('temp_signature_pdf', "temp_signature.pdf");
-        sleep(2);
+   
         
 
     }
