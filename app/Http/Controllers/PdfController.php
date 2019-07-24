@@ -23,7 +23,8 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
-        $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf');
+        $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf')
+           ->saveAs('/app/storage/app/public/pdf/stamp.pdf');
         //$data = $pdf->getDataFields();
         
         // Get data as string
@@ -66,7 +67,6 @@ class PdfController extends Controller
             $error = $pdf->getError();
             echo $error;
         }
-
-        return response()->download('/app/storage/app/public/pdf/filleder.pdf');
+        return response()->download('/app/storage/app/public/pdf/signaturetester.pdf');
     }
 }
