@@ -23,8 +23,8 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
-        $pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf')
-           ->saveAs('/app/storage/app/public/pdf/stamp.pdf');
+        //$pdf->stamp('/app/storage/app/public/pdf/signaturetester.pdf')
+        //   ->saveAs('/app/storage/app/public/pdf/stamp.pdf');
         //$data = $pdf->getDataFields();
         
         // Get data as string
