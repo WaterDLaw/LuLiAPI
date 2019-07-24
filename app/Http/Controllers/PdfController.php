@@ -23,7 +23,7 @@ class PdfController extends Controller
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
-        echo "TEEEEEEEEEEEST";
+        Log::debug("TEEEEEEEEEEEST");
         /*
         $stampPdf = new Pdf('/app/storage/app/public/pdf/signaturtester.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
@@ -71,7 +71,7 @@ class PdfController extends Controller
         }
         */
         $output = shell_exec('ls -lart');
-        echo "<pre>$output</pre>";
+        Log::debug($output);
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
