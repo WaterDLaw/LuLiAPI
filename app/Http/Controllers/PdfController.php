@@ -23,8 +23,11 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         
-        $pdf->background('/app/storage/app/public/pdf/signaturetester.pdf');
-        //   ->saveAs('/app/storage/app/public/pdf/stamp.pdf');
+        $stampPdf = new Pdf('/app/storage/app/public/pdf/signaturtester.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+
         //$data = $pdf->getDataFields();
         
         // Get data as string
@@ -57,16 +60,15 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
-
-
-        // Add Signature to file
-        // Stamp with another PDF (first page repeated)
+        $pdf->stamp($stampPdf)
+        ->saveAs('/app/storage/app/public/pdf/stamped.pdf');
 
         // Check for errors
         if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
             $error = $pdf->getError();
             echo $error;
         }
+
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
     }
 }
