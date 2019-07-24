@@ -62,7 +62,7 @@ class PdfController extends Controller
         
         
         try{
-            $pdf->stamp('/app/storage/app/public/pdf/temp_signature_pdf/temp_signature.pdf');
+            $pdf->stamp('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
