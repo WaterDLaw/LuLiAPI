@@ -60,13 +60,13 @@ class PdfController extends Controller
         ->needAppearances();
         
         
-        
+        /*
         try{
             $pdf->stamp('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
-        
+        */
 
 
         // Check for errors
