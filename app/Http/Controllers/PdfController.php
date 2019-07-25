@@ -32,11 +32,7 @@ class PdfController extends Controller
         // Get data as string
         //echo $data;
     
-        try{
-            $pdf->stamp('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
-        } catch (Exception $e){
-            Log::error("Could not stamp pdf: " . $pdf->getError());
-        }
+
     
 
         $name = $patient->name;
@@ -66,7 +62,11 @@ class PdfController extends Controller
             ])
         ->needAppearances();
         
-        
+        try{
+            $pdf->background('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
+        } catch (Exception $e){
+            Log::error("Could not stamp pdf: " . $pdf->getError());
+        }
         
 
 
