@@ -35,6 +35,22 @@ class PdfController extends Controller
 
     
 
+
+        
+        try{
+            $pdf->background('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
+        } catch (Exception $e){
+            Log::error("Could not stamp pdf: " . $pdf->getError());
+        }
+        $pdf->saveAs('/app/storage/app/public/pdf/tempstamp.pdf');
+
+        sleep(1);
+
+        $stamppdf = new Pdf('/app/storage/app/public/pdf/tempstamp.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+
         $name = $patient->name;
         $vorname = $patient->vorname;
         $strasse = $patient->strasse;
@@ -47,7 +63,7 @@ class PdfController extends Controller
         $versicherer = "";
         $VersUnfallNr = "";
         
-        $pdf->fillForm([
+        $stamppdf->fillForm([
                 'Text9' => $name,
                 'Text10' => $vorname,
                 'Text11' => $strasse,
@@ -61,22 +77,15 @@ class PdfController extends Controller
                 'Text19' => $VersUnfallNr
             ])
         ->needAppearances();
-        
-        try{
-            $pdf->background('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
-        } catch (Exception $e){
-            Log::error("Could not stamp pdf: " . $pdf->getError());
-        }
-        
-
 
 
         // Check for errors
-        if (!$pdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
-            $error = $pdf->getError();
+        if (!$stamppdf->saveAs('/app/storage/app/public/pdf/filleder.pdf')) {
+            $error = $stamppdf->getError();
             Log::error ("Could not save pdf:" . $error);
         }
         Storage::delete('temp_signature.pdf');
+        Storage::delete('tempstamp.pdf');
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
     }
 
