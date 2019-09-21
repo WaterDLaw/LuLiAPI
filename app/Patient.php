@@ -42,7 +42,7 @@ class Patient extends Model
     }
 
     public function messwerte(){
-        return $this->hasMany('App\Messwerte');
+        return $this->hasOne('App\Messwerte');
     }
 
     //
