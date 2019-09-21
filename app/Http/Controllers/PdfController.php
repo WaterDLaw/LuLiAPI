@@ -139,7 +139,10 @@ class PdfController extends Controller
         $pdf->fillForm([
             'Name' => $name,
             'Vorname' => $vorname,
-            'Geb.datum' => $geb
+            'Geb.datum' => $geb,
+            'Diagnose(n)' => $diagnoses_text,
+            'Pneumolog/in' => $pneumologe,
+            'Kursnr.' => $kurs
         ])
         ->needAppearances();
 
