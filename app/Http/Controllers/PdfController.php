@@ -148,7 +148,6 @@ class PdfController extends Controller
             'Diagnose(n)' => $diagnoses_text,
             'Pneumolog/in' => $pneumologe,
             'Kursnr' => $kurs,
-            'VORGr&#246;sse m' => $groesse,
             'VORGewicht kg' => $gewicht_vor,
             'NACHGewicht kg' => $gewicht_nach
         ])
