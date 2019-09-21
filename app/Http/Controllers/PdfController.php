@@ -135,6 +135,11 @@ class PdfController extends Controller
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
         $kurs = $patient->training->title;
 
+        //Messwerte
+        $groesse = $patient->messwerte->groesse_vor;
+        $gewicht_vor = $patient->messwerte->gewicht_vor;
+        $gewicht_nach = $patient->messwerte->gewicht_nach;
+
         // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
@@ -142,7 +147,10 @@ class PdfController extends Controller
             'Geb.datum' => $geb,
             'Diagnose(n)' => $diagnoses_text,
             'Pneumolog/in' => $pneumologe,
-            'Kursnr' => $kurs
+            'Kursnr' => $kurs,
+            'VORGr&#246;sse m' => $groesse,
+            'VORGewicht kg' => $gewicht_vor,
+            'NACHGewicht kg' => $gewicht_nach
         ])
         ->needAppearances();
 
