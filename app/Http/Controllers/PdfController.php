@@ -25,18 +25,7 @@ class PdfController extends Controller
             'useExec' => true
         ]);
         Log::debug("TEEEEEEEEEEEST");
-        
-            
-        //$data = $pdf->getDataFields();
-        
-        // Get data as string
-        //echo $data;
-    
-
-    
-
-
-        
+                
         try{
             $pdf->background('/app/storage/app/temp_signature_pdf/temp_signature.pdf');
         } catch (Exception $e){
@@ -102,5 +91,39 @@ class PdfController extends Controller
     {
         // Delete the file after the new one is created
         Storage::delete('temp_signature_pdf/temp_signature.pdf');
+    }
+
+
+    // Function to create the patientinformation formular
+    public function getPatientFormular($id){
+
+        // Find the Patient to get the data
+        $patient = Patient::find($id);
+
+        // Save the empty Pdf in the variable
+        $pdf = new Pdf('/app/storage/app/public/pdf/patient_form.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+
+        // Save all the information needed into variables for easier use
+        $vorname = $patient->vorname;
+        $name = $patient->name;
+        $geb = $patient->geburtsdatum;
+        
+        $pdf->fillForm([
+            'Name' => $name,
+            'Vorname' => $vorname,
+            'Geb.datum' => $geb
+        ])
+        ->needAppearances();
+
+        if (!$pdf->saveAs('/app/storage/app/public/pdf/fillpatient.pdf')) {
+            $error = $pdf->getError();
+            Log::error ("Could not save patient pdf:" . $error);
+        }else{
+            return response()->download('/app/storage/app/public/pdf/fillpatient.pdf');
+        }
+
     }
 }
