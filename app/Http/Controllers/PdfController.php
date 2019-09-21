@@ -133,7 +133,7 @@ class PdfController extends Controller
         }
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
-        $kurs = $patient->training->start;
+        $kurs = $patient->training->title;
 
         // Fill the pdf form
         $pdf->fillForm([
