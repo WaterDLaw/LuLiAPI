@@ -110,7 +110,32 @@ class PdfController extends Controller
         $vorname = $patient->vorname;
         $name = $patient->name;
         $geb = $patient->geburtsdatum;
-        
+
+        // Check the diagnoses and add them to a string
+        $diagnoses_text = "";
+
+        if($patient->chronisch_obstruktive_Lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Chronisch obstruktive Lungenkrankheit ";
+        }elseif($patient->zystische_fibrose){
+            $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
+        }elseif($patient->asthma_bronchiale){
+            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale ";
+        }elseif($patient->interstitielle_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit ";
+        }elseif($patient->thoraxwand_thoraxmuskelerkrankung){
+            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung ";
+        }elseif($patient->andere_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit ";
+        }elseif($patient->postoperative_lungenoperation){
+            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation ";
+        }elseif($patient->funktionelle_atemstoerung){
+            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
+        }
+        $diagnosen = $diagnoses_text;
+        $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
+        $kurs = $patient->training->start;
+
+        // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
             'Vorname' => $vorname,
