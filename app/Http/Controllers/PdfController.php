@@ -470,6 +470,12 @@ class PdfController extends Controller
         $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
         $vO2max_vor = $patient->messwerte->vO2max_vor;
 
+        // Trainingsempfehlungen
+        $belastung = $patient->belastung;
+        $sauerstoffgehalt = $patient->sauerstoff_bei_belastung;
+        $sao2 = (float)$patient->sao2;
+        $intervalltraining = $patient->Intervalltraining;
+
         // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
@@ -488,6 +494,10 @@ class PdfController extends Controller
             'Max. Leistung (W)' => $max_leistungW_vor,
             'Max. L. (%Soll)' => $max_leistungS_vor,
             'VO2max' => $vO2max_vor,
+            'Belastung' => $belastung,
+            'Sauerstoff bei Belastung'=> $sauerstoffgehalt,
+            'SaO2' => $sao2,
+            'Intervalltraining' => $intervalltraining,
             'Aktuelles Datum' => date('d/m/Y')
         ])
         ->needAppearances();
