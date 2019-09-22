@@ -104,6 +104,7 @@ class PdfController extends Controller
         // Find the Crqsas for the patient
         $exists = Patient::find($id)->crq_sas()->where('erledigt', 'after')->exists();
         if($exists){
+            Log::debug("CRQ AFTER EXISTS");
             $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'after')->get();
             $crq_sas_after = $crq_sas;
         }
@@ -113,11 +114,12 @@ class PdfController extends Controller
 
         $exists = Patient::find($id)->crq_sas()->where('erledigt', 'before')->exists();
         if($exists){
+            Log::debug("CRQ BEFORE EXISTS");
             $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'before')->get();
-            $crq_sas_after = $crq_sas;
+            $crq_sas_before = $crq_sas;
         }
         else{
-            $crq_sas_after = false;
+            $crq_sas_before = false;
         }
 
         // Save the empty Pdf in the variable
