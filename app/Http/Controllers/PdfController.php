@@ -160,6 +160,21 @@ class PdfController extends Controller
         $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
         $rv_tlc_nach = (float)$patient->messwerte->rv_tlc_nach;
 
+        // Arterielle Blutgase
+        $O2_Dosis_vor = $patient->messwerte->O2_Dosis_vor;
+        $O2_Dosis_nach = $patient->messwerte->O2_Dosis_nach;
+        $saO2_vor = (float)$patient->messwerte->saO2_vor;
+        $saO2_nach = (float)$patient->messwerte->saO2_nach;
+        $phwert_vor = $patient->messwerte->phwert_vor;
+        $phwert_nach = $patient->messwerte->phwert_nach;
+        $pO2_vor = $patient->messwerte->pO2_vor;
+        $pO2_nach = $patient->messwerte->pO2_nach;
+        $pC02_vor = $patient->messwerte->pC02_vor;
+        $pC02_nach = $patient->messwerte->pC02_nach;
+        $bicabornat_vor = $patient->messwerte->bicabornat_vor;
+        $bicabornat_nach = $patient->messwerte->bicabornat_nach;
+
+
         // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
@@ -182,7 +197,19 @@ class PdfController extends Controller
             'VORFEV1FVC' => $fev1_fvc_vor,
             'NACHFEV1FVC' => $fev1_fvc_nach,
             'VORRVTLC' => $rv_tlc_vor,
-            'NACHRVTLC' => $rv_tlc_nach
+            'NACHRVTLC' => $rv_tlc_nach,
+            'VORO2Dosis lmin' => $O2_Dosis_vor,
+            'NACHO2Dosis lmin' => $O2_Dosis_nach,
+            'VORSaO2' => $saO2_vor,
+            'NACHSaO2' => $saO2_nach,
+            'VORpH' => $phwert_vor,
+            'NACHpH' => $phwert_nach,
+            'VORpO2 mmHg' => $pO2_vor,
+            'NACHpO2 mmHg' => $pO2_nach,
+            'VORpCO2 mmHg' => $pC02_vor,
+            'NACHpCO2 mmHg' => $pC02_nach,
+            'VORBicarbonat mmoll' => $bicabornat_vor,
+            'NACHBicarbonat mmoll' => $bicabornat_nach
         ])
         ->needAppearances();
 
