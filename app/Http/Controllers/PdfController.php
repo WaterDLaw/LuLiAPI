@@ -100,23 +100,23 @@ class PdfController extends Controller
 
         // Find the Patient to get the data
         $patient = Patient::find($id);
-
+        Log::debug("CRQ GET START");
         // Find the Crqsas for the patient
-        $exists = Patient::find($id)->crq_sas()->where('erledigt', 'after')->exists();
+        $exists = $patient->crq_sas()->where('erledigt', 'after')->exists();
         if($exists){
             Log::debug("CRQ AFTER EXISTS");
-            $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'after')->get();
-            $crq_sas_after = $crq_sas;
+            $crq_sas = $patient->crq_sas()->where('erledigt', 'after')->get();
+            $crq_sas_after = $crq_sas[0];
         }
         else{
             $crq_sas_after = false;
         }
 
-        $exists = Patient::find($id)->crq_sas()->where('erledigt', 'before')->exists();
+        $exists = $patient->crq_sas()->where('erledigt', 'before')->exists();
         if($exists){
             Log::debug("CRQ BEFORE EXISTS");
-            $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'before')->get();
-            $crq_sas_before = $crq_sas;
+            $crq_sas = $patient->crq_sas()->where('erledigt', 'before')->get();
+            $crq_sas_before = $crq_sas[0];
         }
         else{
             $crq_sas_before = false;
