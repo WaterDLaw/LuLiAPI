@@ -413,7 +413,7 @@ class PdfController extends Controller
     }
 
     // Function to create and retrieve the training form
-    public function getTrainingFormular(){
+    public function getTrainingFormular($id){
 
         $patient = Patient::find($id);
 
