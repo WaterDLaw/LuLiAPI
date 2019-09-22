@@ -135,10 +135,14 @@ class PdfController extends Controller
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
         $kurs = $patient->training->title;
 
-        //Messwerte
+        // Messwerte
+
+        // Standard
         $groesse = $patient->messwerte->groesse_vor;
         $gewicht_vor = $patient->messwerte->gewicht_vor;
         $gewicht_nach = $patient->messwerte->gewicht_nach;
+
+        // Spirometrie
 
         // Fill the pdf form
         $pdf->fillForm([
