@@ -217,9 +217,11 @@ class PdfController extends Controller
         $dyspnoe_nach = $patient->messwerte->dyspnoe_nach;
 
         // CRQ Fragebogen
-
+        Log::debug($crq_sas_before);
         if($crq_sas_before){
+            Log::debug("CRQ before tests");
             $crq_fatique_vor = $crq_sas_before->fatique;
+            
             $crq_emotion_vor = $crq_sas_before->emotion;
             $crq_dyspnoe_vor = $crq_sas_before->dyspnoe;
             $crq_mastery_vor = $crq_sas_before->mastery;
@@ -229,8 +231,9 @@ class PdfController extends Controller
             $crq_dyspnoe_vor = "";
             $crq_mastery_vor = "";
         }
-
+        Log::debug($crq_sas_after);
         if($crq_sas_after){
+            Log::debug("CRQ after tests");
             $crq_fatique_nach = $crq_sas_after->fatique;
             $crq_emotion_nach = $crq_sas_after->emotion;     
             $crq_dyspnoe_nach = $crq_sas_after->dyspnoe;        
