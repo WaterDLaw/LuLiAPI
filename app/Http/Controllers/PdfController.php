@@ -182,6 +182,16 @@ class PdfController extends Controller
         $vO2max_vor = $patient->messwerte->vO2max_vor;
         $vO2max_nach = $patient->messwerte->vO2max_nach;
 
+        // 6-min gehtest
+        $distanzM_vor = $patient->messwerte->distanzM_vor;
+        $distanzM_nach = $patient->messwerte->distanzM_nach;
+        $distanzS_vor = (float)$patient->messwerte->distanzS_vor;
+        $distanzS_nach = (float)$patient->messwerte->distanzS_nach;
+        $saO2min_vor = $patient->messwerte->saO2min_vor;
+        $saO2min_nach = $patient->messwerte->saO2min_nach;
+
+
+
         // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
@@ -222,7 +232,15 @@ class PdfController extends Controller
             'VORMax Leistung Soll' => $max_leistungS_vor,
             'NACHMax Leistung Soll' => $max_leistungS_nach,
             'VORVO2max lminkg' => $vO2max_vor,
-            'NACHVO2max lminkg' => $vO2max_nach
+            'NACHVO2max lminkg' => $vO2max_nach,
+            'VORDistanz Meter m' => $distanzM_vor,
+            'NACHDistanz Meter m' => $distanzM_nach,
+            'VORDistanz Meter Soll' => $distanzS_vor,
+            'NACHDistanz Meter Soll' => $distanzS_nach,
+            'VORSaO2min' => $saO2min_vor,
+            'NACHSaO2min' => $saO2min_nach,
+
+
         ])
         ->needAppearances();
 
