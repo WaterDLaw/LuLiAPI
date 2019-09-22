@@ -476,8 +476,6 @@ class PdfController extends Controller
             'Kursnr' => $kurs,
             'VORGrösse m' => $groesse,
             'VORGewicht kg' => $gewicht_vor,
-            'VORBMI kgm2' => $bmi_vor,
-            'NACHBMI kgm2' => $bmi_nach,
             'VORFEV1 l' => $fev1l_vor,
             'VORFEV1 Soll' => $fev1soll_vor,
             'VORFVC l' => $fvc_vor,
