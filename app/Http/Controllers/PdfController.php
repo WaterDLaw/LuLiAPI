@@ -386,7 +386,7 @@ class PdfController extends Controller
             'DIFFERENZMax Leistung W' => $diff_max_leistungW,
             'DIFFERENZMax Leistung Soll' => $diff_max_leistungS,
             'DIFFERENZDistanz Meter m' => $diff_distanzM,
-            'DIFFERENZDistanz Meter Soll' => $diff_distanzS,
+            'DIFFERENZDistanz Meter Soll' => number_format((float)$diff_distanzS, 2, '.', ''),
             'DIFFERENZDyspnoe MMRCScore 04' => $diff_dyspnoe_mmrc,
             'DIFFERENZDyspnoe' => $diff_crq_dyspnoe,
             'DIFFERENZMüdigkeit' => $diff_crq_fatique,
