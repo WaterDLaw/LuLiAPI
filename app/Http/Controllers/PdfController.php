@@ -147,18 +147,18 @@ class PdfController extends Controller
         // Spirometrie
         $fev1l_vor = $patient->messwerte->fev1l_vor;
         $fev1l_nach = $patient->messwerte->fev1l_nach;
-        $fev1soll_vor = $patient->messwerte->fev1soll_vor;
-        $fev1soll_nach = $patient->messwerte->fev1soll_nach;
+        $fev1soll_vor = (float)$patient->messwerte->fev1soll_vor;
+        $fev1soll_nach = (float)$patient->messwerte->fev1soll_nach;
         $fvc_vor = $patient->messwerte->fvc_vor;
         $fvc_nach = $patient->messwerte->fvc_nach;
         $rv_vor = $patient->messwerte->rv_vor;
         $rv_nach = $patient->messwerte->rv_nach;
         $tlc_vor = $patient->messwerte->tlc_vor;
         $tlc_nach = $patient->messwerte->tlc_nach;
-        $fev1_fvc_vor = $patient->messwerte->fev1_fvc_vor;
-        $fev1_fvc_nach = $patient->messwerte->fev1_fvc_nach;
-        $rv_tlc_vor = $patient->messwerte->rv_tlc_vor;
-        $rv_tlc_nach = $patient->messwerte->rv_tlc_nach;
+        $fev1_fvc_vor = (float)$patient->messwerte->fev1_fvc_vor;
+        $fev1_fvc_nach = (float)$patient->messwerte->fev1_fvc_nach;
+        $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
+        $rv_tlc_nach = (float)$patient->messwerte->rv_tlc_nach;
 
         // Fill the pdf form
         $pdf->fillForm([
