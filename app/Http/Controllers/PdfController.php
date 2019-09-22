@@ -487,6 +487,13 @@ class PdfController extends Controller
             'Aktuelles Datum' => date('d/m/Y')
         ])
         ->needAppearances();
+
+        if (!$pdf->saveAs('/app/storage/app/public/pdf/filltraining.pdf')) {
+            $error = $pdf->getError();
+            Log::error ("Could not save training pdf:" . $error);
+        }else{
+            return response()->download('/app/storage/app/public/pdf/filltraining.pdf');
+        }
     }
 
 }
