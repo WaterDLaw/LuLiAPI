@@ -171,8 +171,8 @@ class PdfController extends Controller
         $pO2_nach = $patient->messwerte->pO2_nach;
         $pC02_vor = $patient->messwerte->pC02_vor;
         $pC02_nach = $patient->messwerte->pC02_nach;
-        $bicabornat_vor = $patient->messwerte->bicabornat_vor;
-        $bicabornat_nach = $patient->messwerte->bicabornat_nach;
+        $bicarbornat_vor = $patient->messwerte->bicarbornat_vor;
+        $bicarbornat_nach = $patient->messwerte->bicarbornat_nach;
 
 
         // Fill the pdf form
@@ -208,8 +208,8 @@ class PdfController extends Controller
             'NACHpO2 mmHg' => $pO2_nach,
             'VORpCO2 mmHg' => $pC02_vor,
             'NACHpCO2 mmHg' => $pC02_nach,
-            'VORBicarbonat mmoll' => $bicabornat_vor,
-            'NACHBicarbonat mmoll' => $bicabornat_nach
+            'VORBicarbonat mmoll' => $bicarbornat_vor,
+            'NACHBicarbonat mmoll' => $bicarbornat_nach
         ])
         ->needAppearances();
 
