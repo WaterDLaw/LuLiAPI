@@ -303,7 +303,7 @@ class PdfController extends Controller
         $diff_max_leistungS = $max_leistungS_nach - $max_leistungS_vor;
 
         $diff_distanzM = $distanzM_nach - $distanzM_vor;
-        $diff_distanzS = $distanzS_nach - $distanzS_vor;
+        $diff_distanzS = (float)$distanzS_nach - (float)$distanzS_vor;
 
         // Get the numeric differences of the strings
         $diff_dysp_before = explode(" ",$dyspnoe_vor);
