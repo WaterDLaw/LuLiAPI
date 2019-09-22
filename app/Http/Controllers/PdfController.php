@@ -242,6 +242,8 @@ class PdfController extends Controller
         $dyspnoe_vor = $patient->messwerte->dyspnoe_vor;
         $dyspnoe_nach = $patient->messwerte->dyspnoe_nach;
 
+
+
         // CRQ Fragebogen
         Log::debug($crq_sas_before);
         if($crq_sas_before){
@@ -290,6 +292,29 @@ class PdfController extends Controller
 
         $bodescore_before = $patient->messwerte->bodescore_vor;
         $bodescore_after = $patient->messwerte->bodescore_nach;
+
+        // Calculate differenzes
+        $diff_fev1 = $fev1l_nach - $fev1l_vor;
+        $diff_fev1soll = $fev1soll_nach - $fev1soll_vor;
+
+        $diff_saO2 = $saO2_nach - $saO2_vor;
+
+        $diff_max_leistungW = $max_leistungW_nach - $max_leistungW_vor;
+        $diff_max_leistungS = $max_leistungS_nach - $max_leistungS_vor;
+
+        $diff_distanzM = $distanzM_nach - $distanzM_vor;
+        $diff_distanzS = $distanzS_nach - $distanzS_vor;
+
+        $diff_dyspnoe_mmrc = $dyspnoe_nach - $dyspnoe_vor;
+
+        $diff_crq_dyspnoe = $crq_dyspnoe_nach - $crq_dyspnoe_vor;
+        $diff_crq_fatique = $crq_fatique_nach - $crq_fatique_vor;
+        $diff_crq_emotion = $crq_emotion_nach - $crq_emotion_vor;
+        $diff_crq_mastery = $crq_mastery_nach - $crq_mastery_vor;
+
+        $diff_cat = $cat_score_after - $cat_score_before;
+
+        $diff_bodescore = $bodescore_after - $bodescore_before;
 
         // Fill the pdf form
         $pdf->fillForm([
@@ -351,7 +376,22 @@ class PdfController extends Controller
             'VOR_CAT' => $cat_score_before,
             'NACH_CAT' => $cat_score_after,
             'VOR_BODEScore' => $bodescore_before,
-            'NACH_BODEScore' => $bodescore_after
+            'NACH_BODEScore' => $bodescore_after,
+            'DIFFERENZFEV1_L' => $diff_fev1,
+            'DIFFERENZFEV1Soll' => $diff_fev1soll,
+            'DIFFERENZSaO2' => $diff_saO2 *100,
+            'DIFFERENZMax Leistung W' => $diff_max_leistungW,
+            'DIFFERENZMax Leistung Soll' => $diff_max_leistungS,
+            'DIFFERENZDistanz Meter m' => $diff_distanzM,
+            'DIFFERENZDistanz Meter Soll' => $diff_distanzS,
+            'DIFFERENZDyspnoe MMRCScore 04' => $diff_dyspnoe_mmrc,
+            'DIFFERENZDyspnoe' => $diff_crq_dyspnoe,
+            'DIFFERENZMüdigkeit' => $diff_crq_fatique,
+            'DIFFERENZGefühlslage' => $diff_crq_emotion,
+            'DIFFERENZBewältigung' => $diff_crq_mastery,
+            'DIFFERENZ_CAT' => $diff_cat,
+            'DIFFERENZ_BODEScore' => $diff_bodescore
+
 
         ])
         ->needAppearances();
