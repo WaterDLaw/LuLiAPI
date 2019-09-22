@@ -207,6 +207,8 @@ class PdfController extends Controller
         $fev1_fvc_nach = (float)$patient->messwerte->fev1_fvc_nach;
         $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
         $rv_tlc_nach = (float)$patient->messwerte->rv_tlc_nach;
+        $fvc_soll_vor = (float)$patient->messwerte->fvc_soll_vor;
+        $fvc_soll_nach = (float)$patient->messwerte->fvc_soll_nach;
 
         // Arterielle Blutgase
         $O2_Dosis_vor = $patient->messwerte->O2_Dosis_vor;
@@ -341,6 +343,8 @@ class PdfController extends Controller
             'NACHFEV1 Soll' => $fev1soll_nach,
             'VORFVC l' => $fvc_vor,
             'NACHFVC l' => $fvc_nach,
+            'VORFVC Soll' => $fvc_soll_vor,
+            'NACHFVCSoll' => $fvc_soll_nach,
             'VORFEV1FVC' => $fev1_fvc_vor,
             'NACHFEV1FVC' => $fev1_fvc_nach,
             'VORRVTLC' => $rv_tlc_vor,
