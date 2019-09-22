@@ -63,6 +63,8 @@ class Messwerte extends Model
         'bodescore_vor',
         'bodescore_nach',
         'saO2min_vor',
-        'saO2min_nach'
+        'saO2min_nach',
+        'fvc_soll_vor',
+        'fvc_soll_nach'
     ];
 }
