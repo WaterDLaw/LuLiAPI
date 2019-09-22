@@ -7,6 +7,7 @@ use mikehaertl\pdftk\Pdf;
 use mikehaertl\pdftk\XfdfFile;
 use mikehaertl\pdftk\FdfFile;
 use App\Patient;
+use App\CrqSas;
 use Illuminate\Support\Facades\Storage;
 use Response;
 use Log;
@@ -100,6 +101,25 @@ class PdfController extends Controller
         // Find the Patient to get the data
         $patient = Patient::find($id);
 
+        // Find the Crqsas for the patient
+        $exists = Patient::find($id)->crq_sas()->where('erledigt', 'after')->exists();
+        if($exists){
+            $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'after')->get();
+            $crq_sas_after = $crq_sas;
+        }
+        else{
+            $crq_sas_after = false;
+        }
+
+        $exists = Patient::find($id)->crq_sas()->where('erledigt', 'before')->exists();
+        if($exists){
+            $crq_sas = Patient::find($id)->crq_sas()->where('erledigt', 'before')->get();
+            $crq_sas_after = $crq_sas;
+        }
+        else{
+            $crq_sas_after = false;
+        }
+
         // Save the empty Pdf in the variable
         $pdf = new Pdf('/app/storage/app/public/pdf/patient_form.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
@@ -190,6 +210,35 @@ class PdfController extends Controller
         $saO2min_vor = (float)$patient->messwerte->saO2min_vor;
         $saO2min_nach = (float)$patient->messwerte->saO2min_nach;
 
+        // Dyspnoe
+        $dyspnoe_vor = $patient->messwerte->dyspnoe_vor;
+        $dyspnoe_nach = $patient->messwerte->dyspnoe_nach;
+
+        // CRQ Fragebogen
+
+        if($crq_sas_before){
+            $crq_fatique_vor = $crq_sas_before->fatique;
+            $crq_emotion_vor = $crq_sas_before->emotion;
+            $crq_dyspnoe_vor = $crq_sas_before->dyspnoe;
+            $crq_mastery_vor = $crq_sas_before->mastery;
+        }else{
+            $crq_fatique_vor = "";
+            $crq_emotion_vor = "";
+            $crq_dyspnoe_vor = "";
+            $crq_mastery_vor = "";
+        }
+
+        if($crq_sas_after){
+            $crq_fatique_nach = $crq_sas_after->fatique;
+            $crq_emotion_nach = $crq_sas_after->emotion;     
+            $crq_dyspnoe_nach = $crq_sas_after->dyspnoe;        
+            $crq_mastery_nach = $crq_sas_after->mastery;
+        }else{
+            $crq_fatique_nach = "";
+            $crq_emotion_nach = "";    
+            $crq_dyspnoe_nach = "";        
+            $crq_mastery_nach = ""; 
+        }
 
 
         // Fill the pdf form
@@ -239,7 +288,16 @@ class PdfController extends Controller
             'NACHDistanz Meter Soll' => $distanzS_nach,
             'VORSaO2min' => $saO2min_vor *100,
             'NACHSaO2min' => $saO2min_nach*100,
-
+            'VORDyspnoe MMRCScore 04' => $dyspnoe_vor,
+            'NACHDyspnoe MMRCScore 04' => $dyspnoe_nach,
+            'VORDyspnoe' => $crq_dyspnoe_vor,
+            'NACHDyspnoe' => $crq_dyspnoe_nach,
+            'VORMüdigkeit' => $crq_fatique_vor,
+            'NACHMüdigkeit' => $crq_fatique_nach,
+            'VORGefühlslage' => $crq_emotion_vor,
+            'NACHGefühlslage' => $crq_fatique_nach,
+            'VORBewältigung' => $crq_mastery_vor,
+            'NACHBewältigung' => $crq_mastery_nach
 
         ])
         ->needAppearances();
