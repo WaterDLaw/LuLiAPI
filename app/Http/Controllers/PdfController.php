@@ -305,7 +305,10 @@ class PdfController extends Controller
         $diff_distanzM = $distanzM_nach - $distanzM_vor;
         $diff_distanzS = $distanzS_nach - $distanzS_vor;
 
-        $diff_dyspnoe_mmrc = $dyspnoe_nach - $dyspnoe_vor;
+        // Get the numeric differences of the strings
+        $diff_dysp_before = explode(" ",$dyspnoe_vor);
+        $diff_dysp_after = explode(" ",$dyspnoe_nach);
+        $diff_dyspnoe_mmrc = (int)$diff_dysp_after[0] - (int)$diff_dysp_before[0];
 
         $diff_crq_dyspnoe = $crq_dyspnoe_nach - $crq_dyspnoe_vor;
         $diff_crq_fatique = $crq_fatique_nach - $crq_fatique_vor;
