@@ -127,7 +127,8 @@ class PdfController extends Controller
         $exists = $patient->cats()->where('erledigt', 'before')->exists();
         if($exists){
 
-            $cat_before = $patient->cats()->where('erledigt', 'before')->get();
+            $cat_b = $patient->cats()->where('erledigt', 'before')->get();
+            $cat_before = $cat_b[0];
         }
         else{
 
@@ -138,8 +139,8 @@ class PdfController extends Controller
         $exists = $patient->cats()->where('erledigt', 'after')->exists();
         if($exists){
    
-            $cat_after = $patient->cats()->where('erledigt', 'after')->get();
-
+            $cat_a = $patient->cats()->where('erledigt', 'after')->get();
+            $cat_after = $cat_a[0];
         }
         else{
       
