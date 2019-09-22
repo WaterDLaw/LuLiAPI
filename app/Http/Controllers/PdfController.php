@@ -319,6 +319,9 @@ class PdfController extends Controller
 
         $diff_bodescore = $bodescore_after - $bodescore_before;
 
+        // Date
+
+
         // Fill the pdf form
         $pdf->fillForm([
             'Name' => $name,
@@ -393,7 +396,8 @@ class PdfController extends Controller
             'DIFFERENZGefühlslage' => $diff_crq_emotion,
             'DIFFERENZBewältigung' => $diff_crq_mastery,
             'DIFFERENZ_CAT' => $diff_cat,
-            'DIFFERENZ_BODEScore' => $diff_bodescore
+            'DIFFERENZ_BODEScore' => $diff_bodescore,
+            'Aktuelles Datum' => date('d/m/Y')
 
 
         ])
