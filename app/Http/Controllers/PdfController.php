@@ -101,6 +101,7 @@ class PdfController extends Controller
         // Find the Patient to get the data
         $patient = Patient::find($id);
         Log::debug("CRQ GET START");
+
         // Find the Crqsas for the patient
         $exists = $patient->crq_sas()->where('erledigt', 'after')->exists();
         if($exists){
@@ -122,6 +123,30 @@ class PdfController extends Controller
             $crq_sas_before = false;
         }
 
+        // Find the CAT for the patient
+        $exists = $patient->cats()->where('erledigt', 'before')->exists();
+        if($exists){
+
+            $cat_before = $patient->cats()->where('erledigt', 'before')->get();
+        }
+        else{
+
+            $cat_before = false;
+        }
+
+
+        $exists = $patient->cats()->where('erledigt', 'after')->exists();
+        if($exists){
+   
+            $cat_before = $patient->cats()->where('erledigt', 'after')->get();
+
+        }
+        else{
+      
+            $cat_before= false;
+        }
+
+       
         // Save the empty Pdf in the variable
         $pdf = new Pdf('/app/storage/app/public/pdf/patient_form.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
@@ -245,6 +270,25 @@ class PdfController extends Controller
             $crq_mastery_nach = ""; 
         }
 
+        // Cat 
+        if($cat_before){
+            Log::debug("Cat before tests");
+            $cat_score_before = $cat_before->gesamtpunktzahl;
+        }else{
+            $cat_score_before = "";
+        }
+
+        if($cat_after){
+            Log::debug("Cat after tests");
+            $cat_score_after = $cat_after->gesamtpunktzahl;
+        }else{
+            $cat_score_after = "";
+        }
+
+        // Bodescore
+
+        $bodescore_before = $patient->messwerte->bodescore_vor;
+        $bodescore_after = $patient->messwerte->bodescore_nach;
 
         // Fill the pdf form
         $pdf->fillForm([
@@ -302,7 +346,11 @@ class PdfController extends Controller
             'VORGefühlslage' => $crq_emotion_vor,
             'NACHGefühlslage' => $crq_fatique_nach,
             'VORBewältigung' => $crq_mastery_vor,
-            'NACHBewältigung' => $crq_mastery_nach
+            'NACHBewältigung' => $crq_mastery_nach,
+            'VOR_CAT' => $cat_score_before,
+            'NACH_CAT' => $cat_score_after,
+            'VOR_BODEScore' => $bodescore_before,
+            'NACH_BODEScore' => $bodescore_after
 
         ])
         ->needAppearances();
