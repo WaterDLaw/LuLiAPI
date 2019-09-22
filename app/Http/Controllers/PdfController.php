@@ -146,7 +146,7 @@ class PdfController extends Controller
 
         // Spirometrie
         $fev1l_vor = $patient->messwerte->fev1l_vor;
-        $fev1l_nach = $patient->messwerte->fev1l_nach
+        $fev1l_nach = $patient->messwerte->fev1l_nach;
         $fev1soll_vor = $patient->messwerte->fev1soll_vor;
         $fev1soll_nach = $patient->messwerte->fev1soll_nach;
         $fvc_vor = $patient->messwerte->fvc_vor;
