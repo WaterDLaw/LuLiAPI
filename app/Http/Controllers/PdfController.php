@@ -411,4 +411,84 @@ class PdfController extends Controller
         }
 
     }
+
+    // Function to create and retrieve the training form
+    public function getTrainingFormular(){
+
+        $patient = Patient::find($id);
+
+        $pdf = new Pdf('/app/storage/app/public/pdf/trainingsinfo.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+
+        // Save all the information needed into variables for easier use
+        $vorname = $patient->vorname;
+        $name = $patient->name;
+        $geb = $patient->geburtsdatum;
+
+        // Check the diagnoses and add them to a string
+        $diagnoses_text = "";
+
+        if($patient->chronisch_obstruktive_Lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Chronisch obstruktive Lungenkrankheit ";
+        }elseif($patient->zystische_fibrose){
+            $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
+        }elseif($patient->asthma_bronchiale){
+            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale ";
+        }elseif($patient->interstitielle_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit ";
+        }elseif($patient->thoraxwand_thoraxmuskelerkrankung){
+            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung ";
+        }elseif($patient->andere_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit ";
+        }elseif($patient->postoperative_lungenoperation){
+            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation ";
+        }elseif($patient->funktionelle_atemstoerung){
+            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
+        }
+        $diagnosen = $diagnoses_text;
+        $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
+        $kurs = $patient->training->title;
+
+        $groesse = $patient->messwerte->groesse_vor;
+        $gewicht_vor = $patient->messwerte->gewicht_vor;
+
+        // Spirometrie
+        $fev1l_vor = $patient->messwerte->fev1l_vor;
+        $fev1soll_vor = (float)$patient->messwerte->fev1soll_vor;
+        $fvc_vor = $patient->messwerte->fvc_vor;
+        $fev1_fvc_vor = (float)$patient->messwerte->fev1_fvc_vor;
+        $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
+
+        // Belastungstest
+        $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
+        $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
+        $vO2max_vor = $patient->messwerte->vO2max_vor;
+
+        // Fill the pdf form
+        $pdf->fillForm([
+            'Name' => $name,
+            'Vorname' => $vorname,
+            'Geb.datum' => $geb,
+            'Diagnose(n)' => $diagnoses_text,
+            'Pneumolog/in' => $pneumologe,
+            'Kursnr' => $kurs,
+            'VORGrösse m' => $groesse,
+            'VORGewicht kg' => $gewicht_vor,
+            'VORBMI kgm2' => $bmi_vor,
+            'NACHBMI kgm2' => $bmi_nach,
+            'VORFEV1 l' => $fev1l_vor,
+            'VORFEV1 Soll' => $fev1soll_vor,
+            'VORFVC l' => $fvc_vor,
+            'VORFEV1FVC' => $fev1_fvc_vor,
+            'VORRVTLC' => $rv_tlc_vor,
+            'VORMax Leistung W' => $max_leistungW_vor,
+            'VORMax Leistung Soll' => $max_leistungS_vor,
+            'VORVO2max lminkg' => $vO2max_vor,
+            'Aktuelles Datum' => date('d/m/Y')
+        ])
+        ->needAppearances();
+    }
+
 }
