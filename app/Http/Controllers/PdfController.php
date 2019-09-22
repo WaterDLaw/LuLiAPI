@@ -175,6 +175,12 @@ class PdfController extends Controller
         $bicarbonat_nach = $patient->messwerte->bicarbonat_nach;
 
         // Belastungstest
+        $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
+        $max_leistungW_nach = $patient->messwerte->max_leistungW_nach;
+        $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
+        $max_leistungS_nach = (float)$patient->messwerte->max_leistungS_nach;
+        $vO2max_vor = $patient->messwerte->vO2max_vor;
+        $vO2max_nach = $patient->messwerte->vO2max_nach;
 
         // Fill the pdf form
         $pdf->fillForm([
@@ -210,7 +216,13 @@ class PdfController extends Controller
             'VORpCO2 mmHg' => $pC02_vor,
             'NACHpCO2 mmHg' => $pC02_nach,
             'VORBicarbonat mmoll' => $bicarbonat_vor,
-            'NACHBicarbonat mmoll' => $bicarbonat_nach
+            'NACHBicarbonat mmoll' => $bicarbonat_nach,
+            'VORMax Leistung W' => $max_leistungW_vor,
+            'NACHMax Leistung W' => $max_leistungW_nach,
+            'VORMax Leistung Soll' => $max_leistungS_vor,
+            'NACHMax Leistung Soll' => $max_leistungS_nach,
+            'VORVO2max lminkg' => $vO2max_vor,
+            'NACHVO2max lminkg' => $vO2max_nach
         ])
         ->needAppearances();
 
