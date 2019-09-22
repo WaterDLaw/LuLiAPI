@@ -187,8 +187,8 @@ class PdfController extends Controller
         $distanzM_nach = $patient->messwerte->distanzM_nach;
         $distanzS_vor = (float)$patient->messwerte->distanzS_vor;
         $distanzS_nach = (float)$patient->messwerte->distanzS_nach;
-        $saO2min_vor = $patient->messwerte->saO2min_vor;
-        $saO2min_nach = $patient->messwerte->saO2min_nach;
+        $saO2min_vor = (float)$patient->messwerte->saO2min_vor;
+        $saO2min_nach = (float)$patient->messwerte->saO2min_nach;
 
 
 
@@ -237,8 +237,8 @@ class PdfController extends Controller
             'NACHDistanz Meter m' => $distanzM_nach,
             'VORDistanz Meter Soll' => $distanzS_vor,
             'NACHDistanz Meter Soll' => $distanzS_nach,
-            'VORSaO2min' => $saO2min_vor,
-            'NACHSaO2min' => $saO2min_nach,
+            'VORSaO2min' => $saO2min_vor *100,
+            'NACHSaO2min' => $saO2min_nach*100,
 
 
         ])
