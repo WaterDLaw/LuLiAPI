@@ -79,6 +79,14 @@ class PdfController extends Controller
         return response()->download('/app/storage/app/public/pdf/filleder.pdf');
     }
 
+
+    public function uploadTempCharts(request $request)
+    {
+        // Store signature pdf in Storage
+        $path = $request->file('charts')->storeAs('temp_charts_pdf', "temp_charts.pdf");
+        sleep(5);
+    }
+
     public function uploadTempSignature(Request $request)
     {
         // Store signature pdf in Storage

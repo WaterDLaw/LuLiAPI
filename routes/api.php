@@ -71,5 +71,6 @@ Route::get('statistics', 'StatisticController@getPatientsWithTrainings');
 
 Route::get('pdf/Verordnung/{id}', 'PdfController@getVerordnungsformular');
 Route::post('pdf/temp_signature', 'PdfController@uploadTempSignature');
+Route::post('pdf/temp_charts', 'PdfController@uploadTempCharts');
 Route::get('pdf/Patientformular/{id}', 'PdfController@getPatientFormular');
 Route::get('pdf/Trainingformular/{id}', 'PdfController@getTrainingFormular');
