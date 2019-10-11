@@ -83,6 +83,7 @@ class PdfController extends Controller
     public function uploadTempCharts(request $request)
     {
         // Store signature pdf in Storage
+        Log::debug("Inside Charts temp");
         $path = $request->file('charts')->storeAs('temp_charts_pdf', "temp_charts.pdf");
         sleep(5);
     }
@@ -109,6 +110,29 @@ class PdfController extends Controller
         // Find the Patient to get the data
         $patient = Patient::find($id);
         Log::debug("CRQ GET START");
+
+
+        // Save the empty Pdf in the variable
+        $pdf = new Pdf('/app/storage/app/public/pdf/pdf/patient_form.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+        Log::debug("TEEEEEEEEEEEST");
+                
+        try{
+            $pdf->background('/app/storage/app/temp_charts_pdf/temp_charts.pdf');
+        } catch (Exception $e){
+            Log::error("Could not stamp pdf: " . $pdf->getError());
+        }
+        $pdf->saveAs('/app/storage/app/public/temp_charts_pdf/patient_form_charts.pdf');
+
+        sleep(1);
+
+        $stamppdf = new Pdf('/app/storage/app/public/temp_charts_pdf/patient_form_charts.pdf', [
+            'command' => '/app/vendor/pdftk/bin/pdftk',
+            'useExec' => true
+        ]);
+
 
         // Find the Crqsas for the patient
         $exists = $patient->crq_sas()->where('erledigt', 'after')->exists();
@@ -157,11 +181,12 @@ class PdfController extends Controller
 
        
         // Save the empty Pdf in the variable
-        $pdf = new Pdf('/app/storage/app/public/pdf/patient_form.pdf', [
+        /*
+        $pdf = new Pdf('/app/storage/app/public/pdf/temp_charts_pdf/patient_form.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
-
+*/
         // Save all the information needed into variables for easier use
         $vorname = $patient->vorname;
         $name = $patient->name;
@@ -333,7 +358,7 @@ class PdfController extends Controller
 
 
         // Fill the pdf form
-        $pdf->fillForm([
+        $stamppdf->fillForm([
             'Name' => $name,
             'Vorname' => $vorname,
             'Geb.datum' => $geb,
@@ -415,8 +440,8 @@ class PdfController extends Controller
         ])
         ->needAppearances();
 
-        if (!$pdf->saveAs('/app/storage/app/public/pdf/fillpatient.pdf')) {
-            $error = $pdf->getError();
+        if (!$stamppdf->saveAs('/app/storage/app/public/pdf/fillpatient.pdf')) {
+            $error = $stamppdf->getError();
             Log::error ("Could not save patient pdf:" . $error);
         }else{
             return response()->download('/app/storage/app/public/pdf/fillpatient.pdf');
