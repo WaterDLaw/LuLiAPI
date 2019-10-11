@@ -113,7 +113,7 @@ class PdfController extends Controller
 
 
         // Save the empty Pdf in the variable
-        $pdf = new Pdf('/app/storage/app/public/pdf/pdf/patient_form.pdf', [
+        $pdf = new Pdf('/app/storage/app/public/pdf/patient_form.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
@@ -127,7 +127,7 @@ class PdfController extends Controller
         }
         $pdf->saveAs('/app/storage/app/temp_charts_pdf/patient_form_charts.pdf');
 
-        sleep(1);
+        sleep(3);
 
         $stamppdf = new Pdf('/app/storage/app/temp_charts_pdf/patient_form_charts.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
