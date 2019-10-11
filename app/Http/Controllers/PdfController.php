@@ -121,6 +121,7 @@ class PdfController extends Controller
                 
         try{
             $pdf->background('/app/storage/app/temp_charts_pdf/temp_charts.pdf');
+            Log::Debug("Stamp worked");
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
