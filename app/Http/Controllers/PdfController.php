@@ -125,11 +125,11 @@ class PdfController extends Controller
         } catch (Exception $e){
             Log::error("Could not stamp pdf: " . $pdf->getError());
         }
-        $pdf->saveAs('/app/storage/app/public/temp_charts_pdf/patient_form_charts.pdf');
+        $pdf->saveAs('/app/storage/app/temp_charts_pdf/patient_form_charts.pdf');
 
         sleep(1);
 
-        $stamppdf = new Pdf('/app/storage/app/public/temp_charts_pdf/patient_form_charts.pdf', [
+        $stamppdf = new Pdf('/app/storage/app/temp_charts_pdf/patient_form_charts.pdf', [
             'command' => '/app/vendor/pdftk/bin/pdftk',
             'useExec' => true
         ]);
