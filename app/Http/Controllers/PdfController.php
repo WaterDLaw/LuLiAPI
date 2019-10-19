@@ -41,11 +41,16 @@ class PdfController extends Controller
             'useExec' => true
         ]);
 
+        // Change Birthday to new format 24.04.1990 from YYYY-MM-DD
+        $birthday = $patient->geburtsdatum;
+        $newDate = date("d-m-Y", strtotime($birthday));
+        $date = str_replace('-', '.', $origDate );
+
         $name = $patient->name;
         $vorname = $patient->vorname;
         $strasse = $patient->strasse;
         $plzOrt = $patient->plz . " " .$patient->wohnort;
-        $geb = $patient->geburtsdatum;
+        $geb = $patient->$date;
         $tel = $patient->telefon;
         $arbeitgeber = "";
         $firmaPlzOrt = "";
