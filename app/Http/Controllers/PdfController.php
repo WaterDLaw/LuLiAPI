@@ -44,7 +44,7 @@ class PdfController extends Controller
         // Change Birthday to new format 24.04.1990 from YYYY-MM-DD
         $birthday = $patient->geburtsdatum;
         $newDate = date("d-m-Y", strtotime($birthday));
-        $date = str_replace('-', '.', $origDate );
+        $date = str_replace('-', '.', $newDate );
 
         $name = $patient->name;
         $vorname = $patient->vorname;
@@ -196,7 +196,12 @@ class PdfController extends Controller
         // Save all the information needed into variables for easier use
         $vorname = $patient->vorname;
         $name = $patient->name;
-        $geb = $patient->geburtsdatum;
+
+        $birthday = $patient->geburtsdatum;
+        $newDate = date("d-m-Y", strtotime($birthday));
+        $date = str_replace('-', '.', $newDate );
+
+        $geb = $date;
 
         // Check the diagnoses and add them to a string
         $diagnoses_text = "";
@@ -468,7 +473,12 @@ class PdfController extends Controller
         // Save all the information needed into variables for easier use
         $vorname = $patient->vorname;
         $name = $patient->name;
-        $geb = $patient->geburtsdatum;
+
+        $birthday = $patient->geburtsdatum;
+        $newDate = date("d-m-Y", strtotime($birthday));
+        $date = str_replace('-', '.', $newDate );
+
+        $geb = $date;
 
         // Check the diagnoses and add them to a string
         $diagnoses_text = "";
