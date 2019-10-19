@@ -43,8 +43,11 @@ class PdfController extends Controller
 
         // Change Birthday to new format 24.04.1990 from YYYY-MM-DD
         $birthday = $patient->geburtsdatum;
+        Log::debug($birthday);
         $newDate = date("d-m-Y", strtotime($birthday));
+        Log::debug($newDate);
         $date = str_replace('-', '.', $newDate );
+        Log::debug($date);
 
         $name = $patient->name;
         $vorname = $patient->vorname;
