@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFvcsollToMesswerte extends Migration
+class PasswordToPneumolgists extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddFvcsollToMesswerte extends Migration
      */
     public function up()
     {
-        Schema::table('messwertes', function (Blueprint $table) {
+        Schema::table('pneumologists', function (Blueprint $table) {
             //
-            $table->decimal('fvc_soll_vor',12,8)->nullable();
-            $table->decimal('fvc_soll_nach',12,8)->nullable();
+            $table->string('password')->nullable();
   
         });
     }
@@ -28,10 +27,9 @@ class AddFvcsollToMesswerte extends Migration
      */
     public function down()
     {
-        Schema::table('messwertes', function (Blueprint $table) {
+        Schema::table('pneumologists', function (Blueprint $table) {
             //
-            $table->dropColumn('fvc_soll_vor');
-            $table->dropColumn('fvc_soll_nach');
+            $table->dropColumn('password');
   
         });
     }

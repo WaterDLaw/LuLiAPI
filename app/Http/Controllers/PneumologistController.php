@@ -115,6 +115,25 @@ class PneumologistController extends Controller
         return $pneumologist;
     }
 
+    public function checkPassword(Request $request)
+    {
+        info("Start check signature");
+        info($request);
+        $pneumologist = Pneumologist::findOrFail($request->id);
+        
+        
+
+        // Check the password
+        if($pneumologist->password == $request->password){
+            $check = "true";
+        }else{
+            $check = "false";
+        }
+
+        return $check;
+
+    }
+
     public function getSignature($path)
     {
         info("paassst");

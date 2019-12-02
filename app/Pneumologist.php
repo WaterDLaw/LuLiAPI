@@ -16,6 +16,7 @@ class Pneumologist extends Model
         'anrede',
         'vorname',
         'name',
-        'signature'
+        'signature',
+        'password'
     ];
 }

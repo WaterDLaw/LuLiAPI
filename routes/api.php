@@ -62,6 +62,7 @@ Route::resource('pneumologist','PneumologistController');
 Route::get('pneumologist/{id}/getPatients', 'PneumologistController@getPatients');
 Route::post('pneumologist/{id}/uploadSignature', 'PneumologistController@uploadSignature');
 Route::get('pneumologistSignature/{path}', 'PneumologistController@getSignature');
+Route::get('pneumologistPassword/{id}', 'PneumologistController@checkPassword');
 
 Route::resource('actionhistory', 'ActionHistoryController');
 
