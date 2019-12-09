@@ -65,6 +65,11 @@ class Messwerte extends Model
         'saO2min_vor',
         'saO2min_nach',
         'fvc_soll_vor',
-        'fvc_soll_nach'
+        'fvc_soll_nach',
+        'trainingspuls',
+        'rr_syst_vor',
+        'rr_syst_nach',
+        'rr_diast_vor',
+        'rr_diast_nach'
     ];
 }
