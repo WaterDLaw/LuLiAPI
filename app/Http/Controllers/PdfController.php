@@ -531,7 +531,12 @@ class PdfController extends Controller
         $belastung = $patient->belastung;
         $sauerstoffgehalt = $patient->sauerstoff_bei_belastung;
         $sao2 = (float)$patient->messwerte->sao2_vor;
-        $intervalltraining = $patient->Intervalltraining;
+        $intervalltrainingValue = $patient->Intervalltraining;
+        if($intervalltrainingValue){
+            $intervalltraining = 'Ja'
+        }else{
+            $intervalltraining = 'Off'
+        }
         $trainingspuls = $patient->trainingspuls;
 
 
@@ -556,7 +561,7 @@ class PdfController extends Controller
             'Belastung' => $belastung,
             'Sauerstoff bei Belastung'=> $sauerstoffgehalt,
             'SaO2' => $sao2,
-            'Intervalltraining' => 'Ja',
+            'Intervalltraining' => $intervalltraining,
             'Aktuelles Datum' => $aktuellesdatum,
             'RRsyst' => $blutdruck_syst,
             'RRdiast' => $blutdruck_diast,
