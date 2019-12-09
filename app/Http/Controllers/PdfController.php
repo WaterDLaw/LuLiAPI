@@ -516,16 +516,16 @@ class PdfController extends Controller
 
         // Spirometrie
         $fev1l_vor = $patient->messwerte->fev1l_vor;
-        $fev1soll_vor = (float)$patient->messwerte->fev1soll_vor;
+        $fev1soll_vor = (int)$patient->messwerte->fev1soll_vor;
         $fvc_vor = $patient->messwerte->fvc_vor;
         $fev1_fvc_vor = (float)$patient->messwerte->fev1_fvc_vor;
         $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
 
         // Belastungstest
         $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
-        $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
+        $max_leistungS_vor = (int)$patient->messwerte->max_leistungS_vor;
         $vO2max_vor = $patient->messwerte->vO2max_vor;
-        $hfmax_vor = $patient->messwerte->hfmax_vor;
+        $hfmax_vor = (int)$patient->messwerte->hfmax_vor;
 
         // Trainingsempfehlungen
         $belastung = $patient->belastung;
@@ -546,10 +546,10 @@ class PdfController extends Controller
             'Grösse' => $groesse,
             'Gewicht' => $gewicht_vor,
             'FEV1 l' => $fev1l_vor,
-            'VORFEV1 Soll' => $fev1soll_vor,
+            'FEV1 (Soll)' => $fev1soll_vor,
             'FVC' => $fvc_vor,
             'FEV1/FVC' => $fev1_fvc_vor,
-            //'VORRVTLC' => $rv_tlc_vor,
+            'RV/TLC' => $rv_tlc_vor,
             'Max. Leistung (W)' => $max_leistungW_vor,
             'Max. L. (%Soll)' => $max_leistungS_vor,
             'VO2max' => $vO2max_vor,
@@ -558,10 +558,10 @@ class PdfController extends Controller
             'SaO2' => $sao2,
             'Intervalltraining' => $intervalltraining,
             'Aktuelles Datum' => $aktuellesdatum,
-            'RRSyst' => $blutdruck_syst,
+            'RRsyst' => $blutdruck_syst,
             'RRdiast' => $blutdruck_diast,
             'HFmax' => $hfmax_vor,
-            'Trainingspuls' => $trainingspuls
+            'Blutdruck' => $trainingspuls
         ])
         ->needAppearances();
 
