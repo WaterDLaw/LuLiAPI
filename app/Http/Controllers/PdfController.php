@@ -479,6 +479,8 @@ class PdfController extends Controller
 
         $birthday = $patient->geburtsdatum;
         $newDate = date("d-m-Y", strtotime($birthday));
+        $aktuellesdatumNew = date('d-m-Y');
+        $aktuellesdatum = str_replace('-', '.', $aktuellesdatumNew );
         $date = str_replace('-', '.', $newDate );
 
         $geb = $date;
@@ -504,11 +506,13 @@ class PdfController extends Controller
             $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
         }
         $diagnosen = $diagnoses_text;
-        $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
+        $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
         $kurs = $patient->training->title;
 
         $groesse = $patient->messwerte->groesse_vor;
-        $gewicht_vor = $patient->messwerte->gewicht_vor;
+        $gewicht_vor = (int)$patient->messwerte->gewicht_vor;
+        $blutdruck_syst = (int)$patient->messwerte->rr_syst_vor;
+        $blutdruck_diast = (int)$patient->messwerte->rr_diast_vor;
 
         // Spirometrie
         $fev1l_vor = $patient->messwerte->fev1l_vor;
@@ -521,12 +525,15 @@ class PdfController extends Controller
         $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
         $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
         $vO2max_vor = $patient->messwerte->vO2max_vor;
+        $hfmax_vor = $patient->messwerte->hfmax_vor;
 
         // Trainingsempfehlungen
         $belastung = $patient->belastung;
         $sauerstoffgehalt = $patient->sauerstoff_bei_belastung;
-        $sao2 = (float)$patient->sao2;
+        $sao2 = (float)$patient->messwerte->sao2_vor;
         $intervalltraining = $patient->Intervalltraining;
+        $trainingspuls = $patient->trainingspuls;
+
 
         // Fill the pdf form
         $pdf->fillForm([
@@ -550,7 +557,11 @@ class PdfController extends Controller
             'Sauerstoff bei Belastung'=> $sauerstoffgehalt,
             'SaO2' => $sao2,
             'Intervalltraining' => $intervalltraining,
-            'Aktuelles Datum' => date('d/m/Y')
+            'Aktuelles Datum' => ,
+            'RRSyst' => $blutdruck_syst,
+            'RRdiast' => $blutdruck_diast,
+            'HFmax' => $hfmax_vor,
+            'Trainingspuls' => $trainingspuls
         ])
         ->needAppearances();
 
