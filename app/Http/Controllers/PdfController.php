@@ -522,7 +522,7 @@ class PdfController extends Controller
         $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
 
         // Belastungstest
-        $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
+        $max_leistungW_vor = (int)$patient->messwerte->max_leistungW_vor;
         $max_leistungS_vor = (int)$patient->messwerte->max_leistungS_vor;
         $vO2max_vor = $patient->messwerte->vO2max_vor;
         $hfmax_vor = (int)$patient->messwerte->hfmax_vor;
@@ -556,7 +556,7 @@ class PdfController extends Controller
             'Belastung' => $belastung,
             'Sauerstoff bei Belastung'=> $sauerstoffgehalt,
             'SaO2' => $sao2,
-            'Intervalltraining' => $intervalltraining,
+            'Intervalltraining' => 'Ja',
             'Aktuelles Datum' => $aktuellesdatum,
             'RRsyst' => $blutdruck_syst,
             'RRdiast' => $blutdruck_diast,
