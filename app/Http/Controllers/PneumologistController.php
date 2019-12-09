@@ -150,7 +150,11 @@ class PneumologistController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //delete a pneumologist
+
+        $pneumologist = Pneumologist::find($id);
+        $pneumologist->delete();
+        return 'deleted';
     }
 
     // Get all the Patients for the Pneumologist
