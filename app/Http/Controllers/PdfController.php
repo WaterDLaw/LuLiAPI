@@ -557,7 +557,7 @@ class PdfController extends Controller
             'Sauerstoff bei Belastung'=> $sauerstoffgehalt,
             'SaO2' => $sao2,
             'Intervalltraining' => $intervalltraining,
-            'Aktuelles Datum' => ,
+            'Aktuelles Datum' => $aktuellesdatum,
             'RRSyst' => $blutdruck_syst,
             'RRdiast' => $blutdruck_diast,
             'HFmax' => $hfmax_vor,
