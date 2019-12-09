@@ -533,9 +533,9 @@ class PdfController extends Controller
         $sao2 = (float)$patient->messwerte->sao2_vor;
         $intervalltrainingValue = $patient->Intervalltraining;
         if($intervalltrainingValue){
-            $intervalltraining = 'Ja'
+            $intervalltraining = 'Ja';
         }else{
-            $intervalltraining = 'Off'
+            $intervalltraining = 'Off';
         }
         $trainingspuls = $patient->trainingspuls;
 
