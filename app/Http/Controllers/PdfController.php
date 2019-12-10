@@ -489,7 +489,7 @@ class PdfController extends Controller
         $diagnoses_text = "";
 
         if($patient->chronisch_obstruktive_Lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Chronisch obstruktive Lungenkrankheit " . $patient->copdgold . "/" . $patient->copdletter;
+            $diagnoses_text = $diagnoses_text . "COPD " . $patient->copdgold . "/" . $patient->copdletter;
         }elseif($patient->zystische_fibrose){
             $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
         }elseif($patient->asthma_bronchiale){
