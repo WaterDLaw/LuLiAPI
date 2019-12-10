@@ -530,7 +530,7 @@ class PdfController extends Controller
         // Trainingsempfehlungen
         $belastung = $patient->belastung;
         $sauerstoffgehalt = $patient->sauerstoff_bei_belastung;
-        $sao2 = (float)$patient->messwerte->sao2_vor;
+        $sao2 = ($patient->sao2)*100 . "%";
         $intervalltrainingValue = $patient->Intervalltraining;
         if($intervalltrainingValue){
             $intervalltraining = 'Ja';

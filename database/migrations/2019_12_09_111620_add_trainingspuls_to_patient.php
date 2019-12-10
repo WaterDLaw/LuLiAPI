@@ -15,7 +15,7 @@ class AddTrainingspulsToPatient extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
 
-            $table->tinyInteger('trainingspuls')->nullable();
+            $table->string('trainingspuls')->nullable();
   
         });
     }

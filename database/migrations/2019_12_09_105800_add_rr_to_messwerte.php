@@ -15,7 +15,7 @@ class AddRrToMesswerte extends Migration
     {
         Schema::table('messwertes', function (Blueprint $table) {
             //
-            $table->tinyInteger('trainingspuls')->nullable();
+            $table->string('trainingspuls')->nullable();
             $table->decimal('rr_syst_vor',5,2)->nullable();
             $table->decimal('rr_syst_nach',5,2)->nullable();
             $table->decimal('rr_diast_vor',5,2)->nullable();

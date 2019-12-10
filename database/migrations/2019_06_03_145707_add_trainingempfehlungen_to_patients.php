@@ -15,7 +15,7 @@ class AddTrainingempfehlungenToPatients extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
             //
-            $table->Integer('belastung')->nullable();
+            $table->string('belastung')->nullable();
             $table->Integer('sauerstoff_bei_belastung')->nullable();
             $table->decimal('sao2',9,8)->nullable();
             $table->boolean('Intervalltraining')->nullable();
