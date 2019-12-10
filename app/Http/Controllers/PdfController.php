@@ -516,14 +516,14 @@ class PdfController extends Controller
 
         // Spirometrie
         $fev1l_vor = $patient->messwerte->fev1l_vor;
-        $fev1soll_vor = (int)$patient->messwerte->fev1soll_vor;
+        $fev1soll_vor = ((int)$patient->messwerte->fev1soll_vor) ."%";
         $fvc_vor = $patient->messwerte->fvc_vor;
-        $fev1_fvc_vor = (float)$patient->messwerte->fev1_fvc_vor;
-        $rv_tlc_vor = (float)$patient->messwerte->rv_tlc_vor;
+        $fev1_fvc_vor = ((float)$patient->messwerte->fev1_fvc_vor) . "%";
+        $rv_tlc_vor = ((float)$patient->messwerte->rv_tlc_vor) . "%";
 
         // Belastungstest
         $max_leistungW_vor = (int)$patient->messwerte->max_leistungW_vor;
-        $max_leistungS_vor = (int)$patient->messwerte->max_leistungS_vor;
+        $max_leistungS_vor = ((int)$patient->messwerte->max_leistungS_vor) . "%";
         $vO2max_vor = $patient->messwerte->vO2max_vor;
         $hfmax_vor = (int)$patient->messwerte->hfmax_vor;
 
