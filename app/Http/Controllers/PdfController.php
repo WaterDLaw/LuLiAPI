@@ -489,21 +489,28 @@ class PdfController extends Controller
         $diagnoses_text = "";
 
         if($patient->chronisch_obstruktive_Lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "COPD " . $patient->copdgold . "/" . $patient->copdletter;
-        }elseif($patient->zystische_fibrose){
-            $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
-        }elseif($patient->asthma_bronchiale){
-            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale ";
-        }elseif($patient->interstitielle_lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit ";
-        }elseif($patient->thoraxwand_thoraxmuskelerkrankung){
-            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung ";
-        }elseif($patient->andere_lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit ";
-        }elseif($patient->postoperative_lungenoperation){
-            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation ";
-        }elseif($patient->funktionelle_atemstoerung){
-            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
+            $diagnoses_text = $diagnoses_text . "COPD " . $patient->copdgold . "/" . $patient->copdletter . ", ";
+        }
+        if($patient->zystische_fibrose){
+            $diagnoses_text = $diagnoses_text . "Zystische fibrose" . ", ";
+        }
+        if($patient->asthma_bronchiale){
+            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale" . ", ";
+        }
+        if($patient->interstitielle_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit" . ", ";
+        }
+        if($patient->thoraxwand_thoraxmuskelerkrankung){
+            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung" . ", ";
+        }
+        if($patient->andere_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit" . ", ";
+        }
+        if($patient->postoperative_lungenoperation){
+            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation" . ", ";
+        }
+        if($patient->funktionelle_atemstoerung){
+            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung" . ", ";
         }
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
