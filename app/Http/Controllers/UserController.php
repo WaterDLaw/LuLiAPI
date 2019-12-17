@@ -116,7 +116,7 @@ class UserController extends Controller{
         $user->password = bcrypt($request->get('password'));
         $user->userType = $request->get('userType');
         $user->ort = $request->get('ort');
-
+        $user->save();
         return $user;
     }
 
