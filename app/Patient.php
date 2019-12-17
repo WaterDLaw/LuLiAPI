@@ -89,6 +89,7 @@ class Patient extends Model
         'sauerstoff_bei_belastung',
         'sao2',
         'Intervalltraining',
-        'trainingspuls'
+        'trainingspuls',
+        'schweigepflicht'
     ];
 }
