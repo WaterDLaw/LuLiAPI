@@ -9,6 +9,7 @@ use JWTFactory;
 use JWTAuth;
 use Validator;
 use Response;
+use Log;
 
 class UserController extends Controller{
 
