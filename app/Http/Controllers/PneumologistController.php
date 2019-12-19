@@ -105,7 +105,12 @@ class PneumologistController extends Controller
         info($request->file);
 
         // Store image in Storage
-        $path = $request->file('signature')->store('signatures');
+        //$path = $request->file('signature')->store('signatures');
+
+        // Store imagein in s3
+        $path = Storage::disk('s3')->put('signatures', $request->file('signature'));
+        info("hochgeladen in s3");
+        info($path);
         // Store link to path in database
         $pneumologist = Pneumologist::findOrFail($request->id);
         $pneumologist->signature = $path;
@@ -138,7 +143,7 @@ class PneumologistController extends Controller
     {
         info("paassst");
         
-        $signature = Storage::get('signatures/' . $path);
+        $signature = Storage::disk('s3')->get('signatures/' . $path);
 
         return response($signature, 200)->header('Content-Type', 'image/jpeg');
     }
