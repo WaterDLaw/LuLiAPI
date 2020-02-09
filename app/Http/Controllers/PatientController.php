@@ -56,8 +56,8 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         info('Store request.');
-
-        $patient = new Patient($request->all());
+        info($request->patient);
+        $patient = new Patient($request->patient);
         
         $pneumologist = Pneumologist::find($request->pneumologist_id);
 
