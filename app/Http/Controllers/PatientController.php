@@ -64,6 +64,18 @@ class PatientController extends Controller
         $patient->pneumologist()->associate($pneumologist);
         $patient->save();
 
+        //After the Patient is saved make sure it gets added to the correct training
+        info($request->trainingAdd);
+        if($request->trainingAdd != 0){
+            $training = Training::find($request->trainingAdd);
+
+            $patient->training()->associate($training);
+    
+            $patient->save();
+        }
+
+
+
         //
         return $patient;
     }
