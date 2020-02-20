@@ -381,7 +381,7 @@ class PdfController extends Controller
             'Geb.datum' => $geb,
             'Diagnose(n)' => $diagnoses_text,
             'Pneumolog/in' => $pneumologe,
-            'Kursnr' => $kurs,
+            //'Kursnr' => $kurs,
             'VORGrösse m' => $groesse,
             'VORGewicht kg' => $gewicht_vor,
             'NACHGewicht kg' => $gewicht_nach,
