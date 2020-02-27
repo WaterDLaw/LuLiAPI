@@ -275,20 +275,20 @@ class PdfController extends Controller
         $bicarbonat_nach = $patient->messwerte->bicarbonat_nach;
 
         // Belastungstest
-        $max_leistungW_vor = $patient->messwerte->max_leistungW_vor;
-        $max_leistungW_nach = $patient->messwerte->max_leistungW_nach;
-        $max_leistungS_vor = (float)$patient->messwerte->max_leistungS_vor;
-        $max_leistungS_nach = (float)$patient->messwerte->max_leistungS_nach;
+        $max_leistungW_vor = (int)$patient->messwerte->max_leistungW_vor;
+        $max_leistungW_nach = (int)$patient->messwerte->max_leistungW_nach;
+        $max_leistungS_vor = (int)$patient->messwerte->max_leistungS_vor;
+        $max_leistungS_nach = (int)$patient->messwerte->max_leistungS_nach;
         $vO2max_vor = $patient->messwerte->vO2max_vor;
         $vO2max_nach = $patient->messwerte->vO2max_nach;
 
         // 6-min gehtest
         $distanzM_vor = $patient->messwerte->distanzM_vor;
         $distanzM_nach = $patient->messwerte->distanzM_nach;
-        $distanzS_vor = (float)$patient->messwerte->distanzS_vor;
-        $distanzS_nach = (float)$patient->messwerte->distanzS_nach;
-        $saO2min_vor = (float)$patient->messwerte->saO2min_vor;
-        $saO2min_nach = (float)$patient->messwerte->saO2min_nach;
+        $distanzS_vor = (int)$patient->messwerte->distanzS_vor;
+        $distanzS_nach = (int)$patient->messwerte->distanzS_nach;
+        $saO2min_vor = (int)$patient->messwerte->saO2min_vor;
+        $saO2min_nach = (int)$patient->messwerte->saO2min_nach;
 
         // Dyspnoe
         $dyspnoe_vor = $patient->messwerte->dyspnoe_vor;
