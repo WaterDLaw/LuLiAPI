@@ -30,10 +30,9 @@ class StatisticController extends Controller
         $patients = DB::table('patients')
             ->leftJoin('trainings', 'patients.training_id', '=', 'trainings.id')
             ->leftJoin('messwertes', 'patients.id', '=', 'messwertes.patient_id')
-            ->join('cats', 'patients.id', '=', 'cats.patient_id')->where('cats.erledigt', 'before')
-            ->select('*','cats.gesamtpunktzahl as gesamtpunktzahl_vor')
-            ->join('cats', 'patients.id', '=', 'cats.patient_id')->where('cats.erledigt', 'after')
-            ->select('*','cats.gesamtpunktzahl as gesamtpunktzahl_nach')
+            ->join('cats as catsbefore', 'patients.id', '=', 'cats.patient_id')->where('cats.erledigt', 'before')
+            ->join('cats as catsafter', 'patients.id', '=', 'cats.patient_id')->where('cats.erledigt', 'after')
+
             ->get();
 
 
