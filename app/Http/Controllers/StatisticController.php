@@ -30,6 +30,8 @@ class StatisticController extends Controller
         $patients = DB::table('patients')
             ->leftJoin('trainings', 'patients.training_id', '=', 'trainings.id')
             ->leftJoin('messwertes', 'patients.id', '=', 'messwertes.patient_id')
+            ->leftJoin('crq_sas', 'pateints.id', '=', 'crq_sas.patient_id')
+            ->leftJoin('cats', 'patients.id', '=', 'cats.patient_id')
             ->get();
 
 
