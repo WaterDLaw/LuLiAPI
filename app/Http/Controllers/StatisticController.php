@@ -31,7 +31,7 @@ class StatisticController extends Controller
             ->leftJoin('trainings', 'patients.training_id', '=', 'trainings.id')
             ->leftJoin('messwertes', 'patients.id', '=', 'messwertes.patient_id')
             ->leftJoin('cats', 'patients.id', '=', 'cats.patient_id')->where('cats.erledigt', 'before')
-            ->select('cats.*','cats.gesamtpunktzahl as gesamtpunktzahl_vor')
+            ->select('patients.*','cats.gesamtpunktzahl as gesamtpunktzahl_vor')
             ->get();
 
 
