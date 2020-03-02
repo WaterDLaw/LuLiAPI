@@ -28,7 +28,6 @@ class StatisticController extends Controller
         info('Get all Patients with Training Info');
 
         $patients = DB::table('patients')
-            ->select('patients.id as patient_id')
             ->leftJoin('trainings', 'patients.training_id', '=', 'trainings.id')
             ->leftJoin('messwertes', 'patients.id', '=', 'messwertes.patient_id')
             ->get();
