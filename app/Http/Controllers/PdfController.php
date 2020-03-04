@@ -228,7 +228,7 @@ class PdfController extends Controller
         }
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
-        
+
         if($patient->training != null){
             $kurs = $patient->training->title;
         }else{
@@ -359,16 +359,37 @@ class PdfController extends Controller
         $diff_distanzS = (float)$distanzS_nach - (float)$distanzS_vor;
 
         // Get the numeric differences of the strings
-        $diff_dysp_before = explode(" ",$dyspnoe_vor);
-        $diff_dysp_after = explode(" ",$dyspnoe_nach);
-        $diff_dyspnoe_mmrc = (int)$diff_dysp_after[0] - (int)$diff_dysp_before[0];
 
-        $diff_crq_dyspnoe = $crq_dyspnoe_nach - $crq_dyspnoe_vor;
-        $diff_crq_fatique = $crq_fatique_nach - $crq_fatique_vor;
-        $diff_crq_emotion = $crq_emotion_nach - $crq_emotion_vor;
-        $diff_crq_mastery = $crq_mastery_nach - $crq_mastery_vor;
+        //only do this if there is a value in both
 
-        $diff_cat = $cat_score_after - $cat_score_before;
+        if($dyspnoe_vor != null){
+            $diff_dysp_before = explode(" ",$dyspnoe_vor);
+            $diff_dysp_after = explode(" ",$dyspnoe_nach);
+            $diff_dyspnoe_mmrc = (int)$diff_dysp_after[0] - (int)$diff_dysp_before[0];
+        }else{
+            $diff_dyspnoe_mmrc = "empty";
+        }
+
+        //check for the questionaires
+        if($crq_dyspnoe_vor !=null){
+            $diff_crq_dyspnoe = $crq_dyspnoe_nach - $crq_dyspnoe_vor;
+            $diff_crq_fatique = $crq_fatique_nach - $crq_fatique_vor;
+            $diff_crq_emotion = $crq_emotion_nach - $crq_emotion_vor;
+            $diff_crq_mastery = $crq_mastery_nach - $crq_mastery_vor;
+        }else{
+            $diff_crq_dyspnoe = "empty";
+            $diff_crq_fatique = "empty";
+            $diff_crq_emotion = "empty";
+            $diff_crq_mastery = "empty";
+        }
+
+        if($cat_score_before != null){
+            $diff_cat = $cat_score_after - $cat_score_before;
+        }else{
+            $diff_cat = "empty";
+        }
+
+        
 
         $diff_bodescore = $bodescore_after - $bodescore_before;
 
