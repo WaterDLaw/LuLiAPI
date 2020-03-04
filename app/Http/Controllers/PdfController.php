@@ -210,7 +210,13 @@ class PdfController extends Controller
         $diagnoses_text = "";
 
         if($patient->chronisch_obstruktive_Lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Chronisch obstruktive Lungenkrankheit ";
+            $diagnoses_text = $diagnoses_text . "COPD ";
+            if($patient->copdgold){
+                $diagnoses_text = $diagnoses_text . $patient->copdgold;
+            }
+            if($patient->copdletter){
+                $diagnoses_text = $diagnoses_text . "/" . $patient->copdletter;
+            }
         }elseif($patient->zystische_fibrose){
             $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
         }elseif($patient->asthma_bronchiale){
@@ -229,7 +235,7 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if($patient->training->exists()){
+        if($patient->training != null){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
@@ -367,7 +373,7 @@ class PdfController extends Controller
             $diff_dysp_after = explode(" ",$dyspnoe_nach);
             $diff_dyspnoe_mmrc = (int)$diff_dysp_after[0] - (int)$diff_dysp_before[0];
         }else{
-            $diff_dyspnoe_mmrc = "empty";
+            $diff_dyspnoe_mmrc = "";
         }
 
         //check for the questionaires
@@ -377,16 +383,16 @@ class PdfController extends Controller
             $diff_crq_emotion = $crq_emotion_nach - $crq_emotion_vor;
             $diff_crq_mastery = $crq_mastery_nach - $crq_mastery_vor;
         }else{
-            $diff_crq_dyspnoe = "empty";
-            $diff_crq_fatique = "empty";
-            $diff_crq_emotion = "empty";
-            $diff_crq_mastery = "empty";
+            $diff_crq_dyspnoe = "";
+            $diff_crq_fatique = "";
+            $diff_crq_emotion = "";
+            $diff_crq_mastery = "";
         }
 
         if($cat_score_before != null){
             $diff_cat = $cat_score_after - $cat_score_before;
         }else{
-            $diff_cat = "empty";
+            $diff_cat = "";
         }
 
         
@@ -540,7 +546,7 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if($patient->training->exists()){
+        if($patient->training != null){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
