@@ -229,7 +229,7 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if($patient->training != null){
+        if(!$patient->training->isEmpty()){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
@@ -403,7 +403,7 @@ class PdfController extends Controller
             'Geb.datum' => $geb,
             'Diagnose(n)' => $diagnoses_text,
             'Pneumolog/in' => $pneumologe,
-            //'Kursnr' => $kurs,
+            'Kursnr' => $kurs,
             'VORGrösse m' => $groesse,
             'VORGewicht kg' => $gewicht_vor,
             'NACHGewicht kg' => $gewicht_nach,
@@ -540,11 +540,12 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if($patient->training != null){
+        if(!$patient->training->isEmpty()){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
         }
+
 
         
 
