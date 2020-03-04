@@ -228,11 +228,12 @@ class PdfController extends Controller
         }
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
-        //$kurs = $patient->training->title;
         
-        //if(empty($kurs)){
-        //    $kurs = "";
-        //}
+        if($patient->training != null){
+            $kurs = $patient->training->title;
+        }else{
+            $kurs = "Kein Training zugeteilt";
+        }
         // Messwerte
 
         // Standard
