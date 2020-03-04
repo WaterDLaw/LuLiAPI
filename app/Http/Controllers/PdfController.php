@@ -517,7 +517,14 @@ class PdfController extends Controller
         }
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
-        $kurs = $patient->training->title;
+
+        if($patient->$training != null){
+            $kurs = $patient->training->title;
+        }else{
+            $kurs = "Kein Training zugeteilt"
+        }
+
+        
 
         $groesse = $patient->messwerte->groesse_vor;
         $gewicht_vor = (int)$patient->messwerte->gewicht_vor;
