@@ -521,7 +521,7 @@ class PdfController extends Controller
         if($patient->$training != null){
             $kurs = $patient->training->title;
         }else{
-            $kurs = "Kein Training zugeteilt"
+            $kurs = "Kein Training zugeteilt";
         }
 
         
