@@ -236,7 +236,12 @@ class PdfController extends Controller
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
         if($patient->training != null){
-            $kurs = $patient->training->title;
+            
+            $newKursDateStart = date("d-m-Y", strtotime($patient->training->start));
+            $dateStart = str_replace('-', '.', $newKursDateStart );
+            $newKursDateEnd = date("d-m-Y", strtotime($patient->training->end));
+            $dateEnd = str_replace('-', '.', $newKursDateEnd );
+            $kurs = $newKursDateStart . " - " . $newKursDateEnd
         }else{
             $kurs = "Kein Training zugeteilt";
         }
@@ -547,7 +552,12 @@ class PdfController extends Controller
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
         if($patient->training != null){
-            $kurs = $patient->training->title;
+                        
+            $newKursDateStart = date("d-m-Y", strtotime($patient->training->start));
+            $dateStart = str_replace('-', '.', $newKursDateStart );
+            $newKursDateEnd = date("d-m-Y", strtotime($patient->training->end));
+            $dateEnd = str_replace('-', '.', $newKursDateEnd );
+            $kurs = $newKursDateStart . " - " . $newKursDateEnd
         }else{
             $kurs = "Kein Training zugeteilt";
         }
