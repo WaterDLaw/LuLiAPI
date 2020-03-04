@@ -229,7 +229,7 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->anrede . " " . $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if(count($patient->training)){
+        if($patient->training->exists()){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
@@ -540,7 +540,7 @@ class PdfController extends Controller
         $diagnosen = $diagnoses_text;
         $pneumologe = $patient->pneumologist->vorname . " " . $patient->pneumologist->name;
 
-        if(count($patient->training)){
+        if($patient->training->exists()){
             $kurs = $patient->training->title;
         }else{
             $kurs = "Kein Training zugeteilt";
