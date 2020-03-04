@@ -241,7 +241,7 @@ class PdfController extends Controller
             $dateStart = str_replace('-', '.', $newKursDateStart );
             $newKursDateEnd = date("d-m-Y", strtotime($patient->training->end));
             $dateEnd = str_replace('-', '.', $newKursDateEnd );
-            $kurs = $newKursDateStart . " - " . $newKursDateEnd;
+            $kurs = $dateStart . " - " . $dateEnd;
         }else{
             $kurs = "Kein Training zugeteilt";
         }
@@ -557,7 +557,7 @@ class PdfController extends Controller
             $dateStart = str_replace('-', '.', $newKursDateStart );
             $newKursDateEnd = date("d-m-Y", strtotime($patient->training->end));
             $dateEnd = str_replace('-', '.', $newKursDateEnd );
-            $kurs = $newKursDateStart . " - " . $newKursDateEnd;
+            $kurs = $dateStart . " - " . $dateEnd;
         }else{
             $kurs = "Kein Training zugeteilt";
         }
