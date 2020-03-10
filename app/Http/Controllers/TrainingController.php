@@ -127,8 +127,9 @@ class TrainingController extends Controller
         info('Get Participatns');
         $patients = Training::find($id)->patients()
             ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
+            ->select('pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname')
             ->join('messwertes', 'patients.id', '=', 'messwertes.patient_id')
-            ->get(['patients.*','pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname']);
+            ->get();
         info($patients);
         return $patients;
 
