@@ -128,6 +128,7 @@ class TrainingController extends Controller
         $patients = Training::find($id)->patients()
             ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
             ->join('messwertes', 'patients.id', '=', 'messwertes.patient_id')
+            ->join('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
             ->get();
         info($patients);
         return $patients;
