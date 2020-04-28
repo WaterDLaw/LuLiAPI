@@ -75,3 +75,5 @@ Route::post('pdf/temp_signature', 'PdfController@uploadTempSignature');
 Route::post('pdf/temp_charts', 'PdfController@uploadTempCharts');
 Route::get('pdf/Patientformular/{id}', 'PdfController@getPatientFormular');
 Route::get('pdf/Trainingformular/{id}', 'PdfController@getTrainingFormular');
+
+Route::get('mail/newPatient', 'MailController@newPatient');

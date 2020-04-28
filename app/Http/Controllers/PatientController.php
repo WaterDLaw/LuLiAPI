@@ -6,6 +6,9 @@ use App\Patient;
 use App\Training;
 use App\Pneumologist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPatient;
+use App\Mail\NewStatus;
 
 class PatientController extends Controller
 {
@@ -58,8 +61,8 @@ class PatientController extends Controller
         info('Store request.');
         info($request->patient);
         $patient = new Patient($request->patient);
-        
-        $pneumologist = Pneumologist::find($request->pneumologist_id);
+ 
+        $pneumologist = Pneumologist::find($request->patient['pneumologist_id']);
 
         $patient->pneumologist()->associate($pneumologist);
         $patient->save();
@@ -74,8 +77,9 @@ class PatientController extends Controller
             $patient->save();
         }
 
-
-
+        //send email
+        Mail::to('Petra.Vonmoos@lungenliga-so.ch')->send(new newPatient($patient, $pneumologist, $training));
+        
         //
         return $patient;
     }
@@ -117,13 +121,25 @@ class PatientController extends Controller
     public function update(Request $request)
     {
         //
-
+        info($request->status);
+        $after = $request->status;
         $patient = Patient::findOrFail($request->id);
+        $before = $patient->status;
         $patient->update($request->all());
         $pneumologist = Pneumologist::find($request->pneumologist_id);
 
+        info($patient->status);
+
         $patient->pneumologist()->associate($pneumologist);
         $patient->save();
+
+        // check update if status changed
+        if($before != $after){
+
+            //send email
+            Mail::to('Petra.Vonmoos@lungenliga-so.ch')->send(new newStatus($patient, $pneumologist));
+
+        }
 
         
     }
