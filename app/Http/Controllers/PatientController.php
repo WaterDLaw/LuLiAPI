@@ -78,7 +78,7 @@ class PatientController extends Controller
         }
 
         //send email Petra.Vonmoos@lungenliga-so.ch
-        Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training));
+        Mail::to('Petra.Vonmoos@lungenliga-so.ch')->send(new newPatient($patient, $pneumologist, $training));
         
         //
         return $patient;
@@ -137,7 +137,7 @@ class PatientController extends Controller
         if($before != $after){
 
             //send email
-            Mail::to('danytlaw.dev@gmail.com')->send(new newStatus($patient, $pneumologist));
+            Mail::to('Petra.Vonmoos@lungenliga-so.ch')->send(new newStatus($patient, $pneumologist));
 
         }
 
