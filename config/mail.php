@@ -16,8 +16,8 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
-
+    //'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => 'smtp',
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -29,8 +29,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-
+    //'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => 'smtp.googlemail.com',
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Port
@@ -41,8 +41,8 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
-    'port' => env('MAIL_PORT', 587),
+    //    'port' => 'env('MAIL_PORT', 587)',
+    'port' => '465',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,19 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
+    /*
+apronlineinfo@gmail.com
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+    */
+    'from' => [
+        'address' => 'apronlineinfo@gmail.com'),
+        'name' => 'Apr Info'),
+    ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -70,8 +78,8 @@ return [
     | transport layer security protocol should provide great security.
     |
     */
-
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    //'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => 'ssl',
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +92,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'apronlineinfo@gmail.com',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '546454pp34wf',
 
     /*
     |--------------------------------------------------------------------------
