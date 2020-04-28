@@ -62,8 +62,8 @@ apronlineinfo@gmail.com
     ],
     */
     'from' => [
-        'address' => 'apronlineinfo@gmail.com'),
-        'name' => 'Apr Info'),
+        'address' => 'apronlineinfo@gmail.com',
+        'name' => 'Apr Info',
     ],
 
 
