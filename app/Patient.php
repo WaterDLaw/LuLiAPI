@@ -90,6 +90,7 @@ class Patient extends Model
         'sao2',
         'Intervalltraining',
         'trainingspuls',
-        'schweigepflicht'
+        'schweigepflicht',
+        'aktiv'
     ];
 }
