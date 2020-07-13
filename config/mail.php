@@ -94,7 +94,7 @@ apronlineinfo@gmail.com
 
     'username' => 'apronlineinfo@gmail.com',
 
-    'password' => '546454pp34wf',
+    'password' => 'PP34wfPP34wf',
 
     /*
     |--------------------------------------------------------------------------
