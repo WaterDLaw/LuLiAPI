@@ -124,13 +124,60 @@ class TrainingController extends Controller
     }
 
     public function getParticipants($id){
+        $allPatients= [];
         info('Get Participatns');
-        $patients = Training::find($id)->patients()
+        //Training1
+        $training1 = Training::find($id);
+        info($training1['start']);
+        $patients1 = $training1->patients()
             ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
             ->select('patients.*','pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname')
             ->get();
-        info($patients);
-        return $patients;
+        info($patients1);
+
+        
+        //Training2
+        $dt = strtotime($training1['start']);
+        $newdt = date("Y-m-d", strtotime("+1 month", $dt));
+        info($newdt);
+        $newmonth = date("m",strtotime($newdt));
+        $newyear = date("Y",strtotime($newdt));
+        info($newmonth);
+        info($newyear);
+        $training2 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+        info($training2);
+        $patients2 = $training2->patients()
+        ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
+        ->select('patients.*','pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname')
+        ->get();
+        info($patients2);
+
+        //Training3
+        $dt = strtotime($training1['start']);
+        $newdt = date("Y-m-d", strtotime("+2 month", $dt));
+        info($newdt);
+        $newmonth = date("m",strtotime($newdt));
+        $newyear = date("Y",strtotime($newdt));
+        info($newmonth);
+        info($newyear);
+
+        $training3 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+        info($training3);
+        $patients3 = $training3->patients()
+        ->leftJoin('pneumologists', 'pneumologists.id', '=', 'patients.pneumologist_id')
+        ->select('patients.*','pneumologists.name as pneumologistName', 'pneumologists.vorname as pneumologistVorname')
+        ->get();
+        info($patients3);
+
+        //check if the array are not null before merge
+        
+        $allPatients = json_encode(array_merge(json_decode($patients1,true), json_decode($patients2,true),json_decode($patients3,true))); 
+  
+        info($allPatients);
+
+        return $allPatients;
+        
+        //return $patients1;
 
     }
 

@@ -17,7 +17,7 @@ class PdfController extends Controller
     //Verordnungsformular08_D
 
     public function getVerordnungsformular($id){
-
+        info("VERORDNUNG START");
         $patient = Patient::find($id);
 
 
@@ -61,6 +61,35 @@ class PdfController extends Controller
         $versicherer = "";
         $VersUnfallNr = "";
         
+        // Check the diagnoses and add them to a string
+        $diagnoses_text = "";
+
+        if($patient->chronisch_obstruktive_Lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "COPD ";
+            if($patient->copdgold){
+                $diagnoses_text = $diagnoses_text . $patient->copdgold;
+            }
+            if($patient->copdletter){
+                $diagnoses_text = $diagnoses_text . "/" . $patient->copdletter;
+            }
+        }elseif($patient->zystische_fibrose){
+            $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
+        }elseif($patient->asthma_bronchiale){
+            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale ";
+        }elseif($patient->interstitielle_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit ";
+        }elseif($patient->thoraxwand_thoraxmuskelerkrankung){
+            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung ";
+        }elseif($patient->andere_lungenkrankheit){
+            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit ";
+        }elseif($patient->postoperative_lungenoperation){
+            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation ";
+        }elseif($patient->funktionelle_atemstoerung){
+            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
+        }
+        $diagnosen = $diagnoses_text;
+
+
         $stamppdf->fillForm([
                 'Text9' => $name,
                 'Text10' => $vorname,
@@ -72,7 +101,8 @@ class PdfController extends Controller
                 'Text16' => $firmaPlzOrt,
                 'Text17' => $telFirma,
                 'Text18' => $versicherer,
-                'Text19' => $VersUnfallNr
+                'Text19' => $VersUnfallNr,
+                'Text20' => "irgend e scheiss"
             ])
         ->needAppearances();
 
@@ -501,6 +531,8 @@ class PdfController extends Controller
 
     // Function to create and retrieve the training form
     public function getTrainingFormular($id){
+
+        info("Training form start");
 
         $patient = Patient::find($id);
 
