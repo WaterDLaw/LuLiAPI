@@ -138,7 +138,7 @@ class TrainingController extends Controller
         
         //Training2
         $dt = strtotime($training1['start']);
-        $newdt = date("Y-m-d", strtotime("+1 month", $dt));
+        $newdt = date("Y-m-d", strtotime("-1 month", $dt));
         info($newdt);
         $newmonth = date("m",strtotime($newdt));
         $newyear = date("Y",strtotime($newdt));
@@ -154,7 +154,7 @@ class TrainingController extends Controller
 
         //Training3
         $dt = strtotime($training1['start']);
-        $newdt = date("Y-m-d", strtotime("+2 month", $dt));
+        $newdt = date("Y-m-d", strtotime("-2 month", $dt));
         info($newdt);
         $newmonth = date("m",strtotime($newdt));
         $newyear = date("Y",strtotime($newdt));
@@ -169,11 +169,42 @@ class TrainingController extends Controller
         ->get();
         info($patients3);
 
+        //Add the course name to the jsons
+        $arrPat1 = json_decode($patients1, true);
+        info($arrPat1);
+        $arrPat1new = [];
+        foreach($arrPat1 as $pat){
+            $pat['title'] = $training1->title;
+            array_push($arrPat1new,$pat);
+
+        }
+        $jsonPat1 = json_encode($arrPat1new);
+
+        //Add the course name to the jsons
+        $arrPat2 = json_decode($patients2, true);
+        info($arrPat2);
+        $arrPat2new = [];
+        foreach($arrPat2 as $pat){
+            $pat['title'] = $training2->title;
+            array_push($arrPat2new,$pat);
+
+        }
+        $jsonPat2 = json_encode($arrPat2new);
+
+        //Add the course name to the jsons
+        $arrPat3 = json_decode($patients3, true);
+        info($arrPat3);
+        $arrPat3new = [];
+        foreach($arrPat3 as $pat){
+            $pat['title'] = $training3->title;
+            array_push($arrPat3new,$pat);
+
+        }
+        $jsonPat3 = json_encode($arrPat3new);
+
         //check if the array are not null before merge
         
-        $allPatients = json_encode(array_merge(json_decode($patients1,true), json_decode($patients2,true),json_decode($patients3,true))); 
-  
-        info($allPatients);
+        $allPatients = json_encode(array_merge(json_decode($jsonPat1,true), json_decode($jsonPat2,true),json_decode($jsonPat3,true))); 
 
         return $allPatients;
         
