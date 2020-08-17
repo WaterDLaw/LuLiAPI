@@ -91,6 +91,8 @@ class Patient extends Model
         'Intervalltraining',
         'trainingspuls',
         'schweigepflicht',
-        'aktiv'
+        'aktiv',
+        'schulung1',
+        'schulung2'
     ];
 }
