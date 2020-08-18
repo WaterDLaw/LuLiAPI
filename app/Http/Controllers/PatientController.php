@@ -122,6 +122,7 @@ class PatientController extends Controller
     {
         //
         info($request->status);
+        info($request->abschlussDate);
         $after = $request->status;
         $patient = Patient::findOrFail($request->id);
         $before = $patient->status;

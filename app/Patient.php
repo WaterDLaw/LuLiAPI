@@ -93,6 +93,7 @@ class Patient extends Model
         'schweigepflicht',
         'aktiv',
         'schulung1',
-        'schulung2'
+        'schulung2',
+        'abschlussDate'
     ];
 }
