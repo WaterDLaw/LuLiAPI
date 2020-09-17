@@ -15,8 +15,8 @@ class AddSchulungClient extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
             //
-            $table->boolean('schulung1')->nullable();
-            $table->boolean('schulung2')->nullable();
+            $table->integer('schulung')->nullable();
+
         });
     }
 
@@ -29,8 +29,8 @@ class AddSchulungClient extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
             //
-            $table->dropColumn('schulung1');
-            $table->dropColumn('schulung2');
+            $table->dropColumn('schulung');
+    
         });
     }
 }
