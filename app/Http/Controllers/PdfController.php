@@ -87,6 +87,7 @@ class PdfController extends Controller
         }elseif($patient->funktionelle_atemstoerung){
             $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
         }
+        $diagnoses_text = $diagnoses_text . "schwere Einschränkung im Alltag";
         $diagnosen = $diagnoses_text;
         Log::debug($diagnosen);
         info("TEEEEEEEEEEEEEEEEST");
