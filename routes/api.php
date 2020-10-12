@@ -77,3 +77,4 @@ Route::get('pdf/Patientformular/{id}', 'PdfController@getPatientFormular');
 Route::get('pdf/Trainingformular/{id}', 'PdfController@getTrainingFormular');
 
 Route::get('mail/newPatient', 'MailController@newPatient');
+Route::get('mail/newError/{message}', 'MailController@newError');
