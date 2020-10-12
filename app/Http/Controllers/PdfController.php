@@ -73,21 +73,21 @@ class PdfController extends Controller
                 $diagnoses_text = $diagnoses_text . "/" . $patient->copdletter;
             }
         }elseif($patient->zystische_fibrose){
-            $diagnoses_text = $diagnoses_text . "Zystische fibrose ";
+            $diagnoses_text = $diagnoses_text . "-Zystische fibrose ";
         }elseif($patient->asthma_bronchiale){
-            $diagnoses_text = $diagnoses_text . "Asthma Bronchiale ";
+            $diagnoses_text = $diagnoses_text . "-Asthma Bronchiale ";
         }elseif($patient->interstitielle_lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Interstitielle Lungenkrankheit ";
+            $diagnoses_text = $diagnoses_text . "-Interstitielle Lungenkrankheit ";
         }elseif($patient->thoraxwand_thoraxmuskelerkrankung){
-            $diagnoses_text = $diagnoses_text . "Thoraxwand Thoraxmuskelerkrankung ";
+            $diagnoses_text = $diagnoses_text . "-Thoraxwand Thoraxmuskelerkrankung ";
         }elseif($patient->andere_lungenkrankheit){
-            $diagnoses_text = $diagnoses_text . "Andere Lungenkrankheit ";
+            $diagnoses_text = $diagnoses_text . "-Andere Lungenkrankheit ";
         }elseif($patient->postoperative_lungenoperation){
-            $diagnoses_text = $diagnoses_text . "Postoperative Lungenoperation ";
+            $diagnoses_text = $diagnoses_text . "-Postoperative Lungenoperation ";
         }elseif($patient->funktionelle_atemstoerung){
-            $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
+            $diagnoses_text = $diagnoses_text . "-Funktionelle Atemstörung ";
         }
-        $diagnoses_text = $diagnoses_text . "schwere Einschränkung im Alltag";
+        $diagnoses_text = $diagnoses_text . "\n" . "-schwere Einschränkung im Alltag";
         $diagnosen = $diagnoses_text;
         Log::debug($diagnosen);
         info("TEEEEEEEEEEEEEEEEST");
