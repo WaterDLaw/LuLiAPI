@@ -92,7 +92,7 @@ class PdfController extends Controller
         info("TEEEEEEEEEEEEEEEEST");
 
         $stamppdf->fillForm([
-                'Text9' => "name",
+                'Text9' => $name,
                 'Text10' => $vorname,
                 'Text11' => $strasse,
                 'Text12' => $plzOrt,
@@ -103,7 +103,7 @@ class PdfController extends Controller
                 'Text17' => $telFirma,
                 'Text18' => $versicherer,
                 'Text19' => $VersUnfallNr,
-                'Text20' => "TEST"
+                'Text20' => $diagnosen
             ])
         ->needAppearances();
 
