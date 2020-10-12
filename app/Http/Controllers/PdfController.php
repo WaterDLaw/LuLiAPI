@@ -88,10 +88,11 @@ class PdfController extends Controller
             $diagnoses_text = $diagnoses_text . "Funktionelle Atemstörung ";
         }
         $diagnosen = $diagnoses_text;
-
+        Log::debug($diagnosen);
+        info("TEEEEEEEEEEEEEEEEST");
 
         $stamppdf->fillForm([
-                'Text9' => $name,
+                'Text9' => "name",
                 'Text10' => $vorname,
                 'Text11' => $strasse,
                 'Text12' => $plzOrt,
@@ -102,7 +103,7 @@ class PdfController extends Controller
                 'Text17' => $telFirma,
                 'Text18' => $versicherer,
                 'Text19' => $VersUnfallNr,
-                'Text20' => ""
+                'Text20' => "TEST"
             ])
         ->needAppearances();
 
