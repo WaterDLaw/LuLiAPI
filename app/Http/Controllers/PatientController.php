@@ -140,7 +140,7 @@ class PatientController extends Controller
                 }
         
                 //send email Petra.Vonmoos@lungenliga-so.ch
-                Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training));
+                //Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training));
                 
                 //
                 return $patient;
@@ -168,7 +168,7 @@ class PatientController extends Controller
             }
     
             //send email Petra.Vonmoos@lungenliga-so.ch
-            Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training1));
+            //Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training1));
             
             //
             return $patient;
