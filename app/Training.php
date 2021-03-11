@@ -39,7 +39,8 @@ class Training extends Model
         'feedback_bogen',
         'COPD_bogen',
         'belegt',
-        'max_anzahl'
+        'max_anzahl',
+        'max_new'
 
     ];
 }

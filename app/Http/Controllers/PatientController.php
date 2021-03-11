@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewPatient;
 use App\Mail\NewStatus;
+use Symfony\Component\HttpFoundation\Response;
 
 class PatientController extends Controller
 {
@@ -62,26 +63,118 @@ class PatientController extends Controller
         info($request->patient);
         $patient = new Patient($request->patient);
  
-        $pneumologist = Pneumologist::find($request->patient['pneumologist_id']);
-
-        $patient->pneumologist()->associate($pneumologist);
-        $patient->save();
-
-        //After the Patient is saved make sure it gets added to the correct training
-        info($request->trainingAdd);
+        //Before anything is saved make sure that the training is not full in any way
         if($request->trainingAdd != 0){
-            $training = Training::find($request->trainingAdd);
 
-            $patient->training()->associate($training);
+            $training1 = Training::find($request->trainingAdd);
+
+            //check if the training is not full
+            //check if the monthly is not full
+            $participants = $training1->patients()->get();
+            info("patients");
+            info($participants->count());
+            $dt = strtotime($training1['start']);
+            $newdt = date("Y-m-d", strtotime("-1 month", $dt));
+            info($newdt);
+            $newmonth = date("m",strtotime($newdt));
+            $newyear = date("Y",strtotime($newdt));
+            info($newmonth);
+            info($newyear);
+            $training2 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+            info($training2);
+            $patients2 = $training2->patients()->get();
+            info($patients2);
+            info("patients2");
+            info($patients2->count());
+            //Training3
+            $dt = strtotime($training1['start']);
+            $newdt = date("Y-m-d", strtotime("-2 month", $dt));
+            info($newdt);
+            $newmonth = date("m",strtotime($newdt));
+            $newyear = date("Y",strtotime($newdt));
+            info($newmonth);
+            info($newyear);
     
+            $training3 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+            info($training3);
+            $patients3 = $training3->patients()->get();
+            info($patients3);
+            info("patients3");
+            info($patients3->count());
+            $allParticipants = $participants->count() + $patients2->count() + $patients3->count();
+            info($allParticipants);
+            if($training1->max_new > $participants->count()){
+                $max_new = true;
+                $r_new = "true";
+                info("New True");
+            }else{
+                $max_new = false;
+                $r_new = "false";
+                info("New False");
+            }
+            
+            if($training1->max_anzahl > $allParticipants){
+                $max_anzahl = true;
+                $r_anzahl = "true";
+                info("Max True");
+            }else{
+                $max_anzahl = false;
+                $r_anzahl ="false";
+                info("Max False");
+            }
+            
+            if($max_new && $max_anzahl){
+                $pneumologist = Pneumologist::find($request->patient['pneumologist_id']);
+
+                $patient->pneumologist()->associate($pneumologist);
+                $patient->save();
+        
+                //After the Patient is saved make sure it gets added to the correct training
+                info($request->trainingAdd);
+                if($request->trainingAdd != 0){
+                    $training = Training::find($request->trainingAdd);
+        
+                    $patient->training()->associate($training);
+            
+                    $patient->save();
+                }
+        
+                //send email Petra.Vonmoos@lungenliga-so.ch
+                Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training));
+                
+                //
+                return $patient;
+                $message = "success";
+            }else{
+                $message = "failure";
+                return json_encode([$r_anzahl,$r_new]);
+            }
+    
+
+        }else{
+            $pneumologist = Pneumologist::find($request->patient['pneumologist_id']);
+
+            $patient->pneumologist()->associate($pneumologist);
             $patient->save();
+    
+            //After the Patient is saved make sure it gets added to the correct training
+            info($request->trainingAdd);
+            if($request->trainingAdd != 0){
+                $training = Training::find($request->trainingAdd);
+    
+                $patient->training()->associate($training1);
+        
+                $patient->save();
+            }
+    
+            //send email Petra.Vonmoos@lungenliga-so.ch
+            Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training1));
+            
+            //
+            return $patient;
         }
 
-        //send email Petra.Vonmoos@lungenliga-so.ch
-        Mail::to('danytlaw.dev@gmail.com')->send(new newPatient($patient, $pneumologist, $training));
-        
-        //
-        return $patient;
+
     }
 
     /**
@@ -174,11 +267,69 @@ class PatientController extends Controller
     
 
         $patient = Patient::find($request->patient['id']);
-        $training = Training::find($request->training['id']);
+        $training1 = Training::find($request->training['id']);
 
-        $patient->training()->associate($training);
+        //check if the training is not full
+        //check if the monthly is not full
+        $participants = $training1->patients()->get();
+        info("patients");
+        info($participants->count());
+        $dt = strtotime($training1['start']);
+        $newdt = date("Y-m-d", strtotime("-1 month", $dt));
+        info($newdt);
+        $newmonth = date("m",strtotime($newdt));
+        $newyear = date("Y",strtotime($newdt));
+        info($newmonth);
+        info($newyear);
+        $training2 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+        info($training2);
+        $patients2 = $training2->patients()->get();
+        info($patients2);
+        info("patients2");
+        info($patients2->count());
+        //Training3
+        $dt = strtotime($training1['start']);
+        $newdt = date("Y-m-d", strtotime("-2 month", $dt));
+        info($newdt);
+        $newmonth = date("m",strtotime($newdt));
+        $newyear = date("Y",strtotime($newdt));
+        info($newmonth);
+        info($newyear);
 
-        $patient->save();
+        $training3 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
+        info($training3);
+        $patients3 = $training3->patients()->get();
+        info($patients3);
+        info("patients3");
+        info($patients3->count());
+        $allParticipants = $participants->count() + $patients2->count() + $patients3->count();
+        info($allParticipants);
+        if($training1->max_new > $participants->count()){
+            $max_new = true;
+            info("New True");
+        }else{
+            $max_new = false;
+            info("New False");
+        }
+        
+        if($training1->max_anzahl > $allParticipants){
+            $max_anzahl = true;
+            info("Max True");
+        }else{
+            $max_anzahl = false;
+            info("Max False");
+        }
+        
+        if($max_new && $max_anzahl){
+            $patient->training()->associate($training1);
+
+            $patient->save();
+            $message = "success";
+        }else{
+            $message = "failure";
+        }
+
+        return json_encode([$max_anzahl,$max_new]);
         
     }
 
