@@ -70,7 +70,7 @@ class PatientController extends Controller
 
             //check if the training is not full
             //check if the monthly is not full
-            $participants = $training1->patients()->get();
+            $participants = $training1->patients()->where('status','=','Starter')->get();
             info("patients");
             info($participants->count());
             $dt = strtotime($training1['start']);
@@ -82,7 +82,7 @@ class PatientController extends Controller
             info($newyear);
             $training2 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
             info($training2);
-            $patients2 = $training2->patients()->get();
+            $patients2 = $training2->patients()->where('status','=','Starter')->get();
             info($patients2);
             info("patients2");
             info($patients2->count());
@@ -97,7 +97,7 @@ class PatientController extends Controller
     
             $training3 = Training::whereMonth('start', $newmonth)->whereYear('start', $newyear)->first();
             info($training3);
-            $patients3 = $training3->patients()->get();
+            $patients3 = $training3->patients()->where('status','=','Starter')->get();
             info($patients3);
             info("patients3");
             info($patients3->count());
