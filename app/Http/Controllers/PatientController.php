@@ -333,6 +333,21 @@ class PatientController extends Controller
         
     }
 
+    public function removeFromTraining(Request $request){
+        info($request);
+        $patient = Patient::find($request->patient);
+        $training = Training::find($request->training);
+        info($patient);
+        info($training);
+
+        $patient->training()->dissociate();
+
+        $patient->save();
+        
+        return json_encode("success");
+
+    }
+
     // Checks if there is a Feedback and returns the feedback if there is one else return false
     public function hasFeedback($id){
  

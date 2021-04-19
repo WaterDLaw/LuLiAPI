@@ -44,6 +44,7 @@ Route::get('patients/hasCatAfter/{id}', 'PatientController@hasCatAfter');
 Route::get('patients/getGehtest/{id}', 'PatientController@getGehtest');
 Route::get('patients/hasGehtestBefore/{id}', 'PatientController@hasGehtestBefore');
 Route::get('patients/hasGehtestAfter/{id}', 'PatientController@hasGehtestAfter');
+Route::post('patients/removeFromTraining', 'PatientController@removeFromTraining');
 
 
 Route::resource('arp_fragebogen', 'ArpFeedbackController');
